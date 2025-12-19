@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ program.title }} - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{{ program.title }}</h1>
+    <div class="header-actions">
+        <a href="{% url 'main:list_programs' %}" class="btn btn-secondary">← Back to Programs</a>
+        {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'admin:main_program_change' program.id %}" class="btn btn-primary">Edit in Admin</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="program-detail">
+    <div class="program-info">
+        <div class="info-section">
+            <h2>Description</h2>
+            <p>{{ program.description }}</p>
+        </div>
+
+        <div class="program-meta">
+            <div class="meta-item">
+                <strong>📅 Date:</strong>
+                <span>{{ program.date }}</span>
+            </div>
+            <div class="meta-item">
+                <strong>🕐 Time:</strong>
+                <span>{{ program.time }}</span>
+            </div>
+            <div class="meta-item">
+                <strong>📍 Location:</strong>
+                <span>{{ program.location }}</span>
+            </div>
+            <div class="meta-item">
+                <strong>Created:</strong>
+                <span>{{ program.created_at|date:"F d, Y" }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="program-actions">
+        <a href="{% url 'main:membership' %}" class="btn btn-primary">Register for This Program</a>
+        <a href="{% url 'main:list_programs' %}" class="btn btn-outline">View All Programs</a>
+    </div>
+</div>
+{% endblock %}
+

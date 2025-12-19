@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }} - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{{ course.title }}</h1>
+    <a href="{{ url_for('list_courses') }}" class="btn btn-outline">← Back to Courses</a>
+</div>
+
+<div class="content-view">
+    <div class="content-meta">
+        <p><strong>Level:</strong> {{ course.level }}</p>
+        <p><strong>Duration:</strong> {{ course.duration }}</p>
+        <p><strong>Created:</strong> {{ course.created_at }}</p>
+        <p><strong>Created By:</strong> {{ course.created_by }}</p>
+    </div>
+
+    <div class="content-description">
+        <h2>Description</h2>
+        <p>{{ course.description }}</p>
+    </div>
+
+    <div class="content-body">
+        <h2>Course Content</h2>
+        <pre class="document-content">{{ course.content }}</pre>
+    </div>
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Membership - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Become a Member</h1>
+</div>
+
+<div class="membership-intro">
+    <p class="intro-text">Join our community of parents and gain access to exclusive programs, resources, and support. Membership is open to all parents and caregivers who want to grow, learn, and connect.</p>
+</div>
+
+<div class="membership-benefits">
+    <h2>Member Benefits</h2>
+    <div class="benefits-grid">
+        <div class="benefit-card">
+            <div class="benefit-icon">🎓</div>
+            <h3>Free Workshops</h3>
+            <p>Access to all educational workshops and seminars at no additional cost</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">📚</div>
+            <h3>Resource Library</h3>
+            <p>Borrow books, guides, and access our online resource database</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">👥</div>
+            <h3>Support Groups</h3>
+            <p>Join parent support groups tailored to your needs and interests</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">🎉</div>
+            <h3>Community Events</h3>
+            <p>Priority registration for family events and community gatherings</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">💬</div>
+            <h3>Expert Consultations</h3>
+            <p>Access to one-on-one consultations with parenting experts</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">📧</div>
+            <h3>Newsletter</h3>
+            <p>Monthly newsletter with tips, resources, and program updates</p>
+        </div>
+    </div>
+</div>
+
+<div class="membership-form-section">
+    <h2>Join Today</h2>
+    <div class="form-container">
+        <form method="POST" action="{% url 'main:new_participant' %}" class="form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+            </div>
+
+            <div class="form-group">
+                <label for="children_ages">Children Ages *</label>
+                <input type="text" id="children_ages" name="children_ages" required placeholder="e.g., 5, 8, 12">
+                <small class="form-help">Please list the ages of your children, separated by commas</small>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" required>
+                    I agree to the terms and conditions and privacy policy
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Become a Member</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="membership-faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+        <div class="faq-item">
+            <h3>Is membership free?</h3>
+            <p>Yes! Membership is completely free. We believe that all parents should have access to support and resources.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What are the membership requirements?</h3>
+            <p>There are no specific requirements. If you're a parent, caregiver, or guardian, you're welcome to join.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How do I access member benefits?</h3>
+            <p>Once you register, you'll receive a welcome email with information about accessing programs and resources. You can also check our Programs page for upcoming events.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Can I cancel my membership?</h3>
+            <p>You can opt out of communications at any time, though we hope you'll stay connected with our community.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+

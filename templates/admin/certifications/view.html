@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ certification.title }} - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{{ certification.title }}</h1>
+    <a href="{{ url_for('list_certifications') }}" class="btn btn-outline">← Back to Certifications</a>
+</div>
+
+<div class="content-view">
+    <div class="content-meta">
+        <p><strong>Validity Period:</strong> {{ certification.validity_period or 'Lifetime' }}</p>
+        <p><strong>Associated Course:</strong> {{ certification.associated_course or 'None' }}</p>
+        <p><strong>Created:</strong> {{ certification.created_at }}</p>
+        <p><strong>Created By:</strong> {{ certification.created_by }}</p>
+    </div>
+
+    <div class="content-description">
+        <h2>Description</h2>
+        <p>{{ certification.description }}</p>
+    </div>
+
+    <div class="content-body">
+        <h2>Requirements</h2>
+        <pre class="document-content">{{ certification.requirements }}</pre>
+    </div>
+</div>
+{% endblock %}
+
+
+

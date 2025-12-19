@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>About Us</h1>
+</div>
+
+<div class="content-section">
+    <div class="about-intro">
+        <h2>Our Mission</h2>
+        <p>The Parent Enrichment Program is dedicated to empowering parents and caregivers through education, support, and community connection. We believe that when parents thrive, children thrive, and communities become stronger.</p>
+    </div>
+
+    <div class="about-content">
+        <div class="about-section">
+            <h2>What We Do</h2>
+            <p>We offer a comprehensive range of programs and resources designed to support parents at every stage of their journey:</p>
+            <ul class="feature-list">
+                <li><strong>Educational Workshops:</strong> Expert-led sessions on child development, positive parenting, and family wellness</li>
+                <li><strong>Support Groups:</strong> Safe spaces for parents to share experiences and learn from one another</li>
+                <li><strong>Resource Library:</strong> Access to books, guides, and online resources</li>
+                <li><strong>Community Events:</strong> Family-friendly activities that bring our community together</li>
+                <li><strong>One-on-One Support:</strong> Personalized guidance for parents facing specific challenges</li>
+            </ul>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>Inclusivity</h3>
+                    <p>We welcome all parents and caregivers, regardless of background, experience, or family structure.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Empowerment</h3>
+                    <p>We provide tools and knowledge to help parents feel confident and capable.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Community</h3>
+                    <p>We foster connections and build a supportive network of parents helping parents.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Growth</h3>
+                    <p>We believe in continuous learning and personal development for both parents and children.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Impact</h2>
+            <p>Since our founding, we've helped thousands of parents build stronger relationships with their children, develop new skills, and connect with a supportive community. Our programs have been shown to:</p>
+            <ul class="impact-list">
+                <li>Increase parental confidence and self-efficacy</li>
+                <li>Improve parent-child communication</li>
+                <li>Reduce parenting stress and isolation</li>
+                <li>Build stronger family bonds</li>
+                <li>Create lasting community connections</li>
+            </ul>
+        </div>
+
+        <div class="about-section">
+            <h2>Get Involved</h2>
+            <p> This program is for community members who show excellence within their community through hard work and dedication. We believe those who hold themselves to a high standard deserve the highest standard from communities.</p>
+            <div class="cta-buttons">
+                <a href="{% url 'main:membership' %}" class="btn btn-primary">Join as a Member</a>
+                <a href="{% url 'main:donate' %}" class="btn btn-secondary">Support Our Mission</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+

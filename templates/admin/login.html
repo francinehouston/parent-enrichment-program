@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Login - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Admin Login</h1>
+    <form method="POST" class="form">
+        <div class="form-group">
+            <label for="username">Username *</label>
+            <input type="text" id="username" name="username" required placeholder="Enter username">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password *</label>
+            <input type="password" id="password" name="password" required placeholder="Enter password">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-large">Login</button>
+        </div>
+    </form>
+    
+    <p class="admin-note">
+        <small><strong>Default credentials:</strong> username: admin, password: admin123<br>
+        <em>Please change the default password in production!</em></small>
+    </p>
+</div>
+{% endblock %}
+
+
+

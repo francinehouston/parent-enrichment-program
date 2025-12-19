@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Tests - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Tests</h1>
+    <a href="{{ url_for('new_test') }}" class="btn btn-primary">Create New Test</a>
+</div>
+
+{% if tests %}
+<div class="content-list">
+    {% for test in tests %}
+    <div class="content-card">
+        <h3><a href="{{ url_for('view_test', test_id=test.id) }}">{{ test.title }}</a></h3>
+        <p class="content-meta">
+            <span>Questions: {{ test.questions|length }}</span> | 
+            <span>Passing Score: {{ test.passing_score }}%</span> | 
+            <span>Time Limit: {{ test.time_limit or 'No limit' }}</span> | 
+            <span>Created: {{ test.created_at }}</span>
+        </p>
+        <p class="content-preview">{{ test.description[:200] }}{% if test.description|length > 200 %}...{% endif %}</p>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No tests yet. <a href="{{ url_for('new_test') }}">Create the first one!</a></p>
+</div>
+{% endif %}
+
+<div class="back-link">
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline">← Back to Dashboard</a>
+</div>
+{% endblock %}
+
+
+

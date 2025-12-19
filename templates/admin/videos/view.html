@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ video.title }} - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{{ video.title }}</h1>
+    <a href="{{ url_for('list_videos') }}" class="btn btn-outline">← Back to Videos</a>
+</div>
+
+<div class="content-view">
+    <div class="content-meta">
+        <p><strong>Category:</strong> {{ video.category }}</p>
+        <p><strong>Duration:</strong> {{ video.duration }}</p>
+        <p><strong>Created:</strong> {{ video.created_at }}</p>
+        <p><strong>Created By:</strong> {{ video.created_by }}</p>
+    </div>
+
+    <div class="content-description">
+        <h2>Description</h2>
+        <p>{{ video.description }}</p>
+    </div>
+
+    <div class="video-container">
+        <h2>Video</h2>
+        <div class="video-embed">
+            {% if 'youtube.com' in video.video_url or 'youtu.be' in video.video_url %}
+                {% set video_id = video.video_url.split('v=')[1].split('&')[0] if 'v=' in video.video_url else video.video_url.split('/')[-1] %}
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allowfullscreen></iframe>
+            {% elif 'vimeo.com' in video.video_url %}
+                {% set video_id = video.video_url.split('/')[-1] %}
+                <iframe src="https://player.vimeo.com/video/{{ video_id }}" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+            {% else %}
+                <video width="560" height="315" controls>
+                    <source src="{{ video.video_url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% endif %}
+        </div>
+        <p><a href="{{ video.video_url }}" target="_blank" class="btn btn-outline">Open Video in New Tab</a></p>
+    </div>
+</div>
+{% endblock %}
+
+
+

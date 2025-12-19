@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}Donate - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Support Our Mission</h1>
+</div>
+
+<div class="donate-intro">
+    <p class="intro-text">Your generous donation helps us provide free programs, resources, and support to parents and families in our community. Every contribution makes a difference.</p>
+</div>
+
+<div class="donation-impact">
+    <h2>Your Impact</h2>
+    <div class="impact-grid">
+        <div class="impact-card">
+            <div class="impact-amount">$25</div>
+            <h3>Sponsor a Workshop</h3>
+            <p>Helps cover materials and resources for one educational workshop</p>
+        </div>
+        <div class="impact-card">
+            <div class="impact-amount">$50</div>
+            <h3>Support a Family</h3>
+            <p>Provides a family with access to resources and support for a month</p>
+        </div>
+        <div class="impact-card">
+            <div class="impact-amount">$100</div>
+            <h3>Fund a Program</h3>
+            <p>Helps us run a complete program series for multiple families</p>
+        </div>
+        <div class="impact-card">
+            <div class="impact-amount">$250+</div>
+            <h3>Community Champion</h3>
+            <p>Makes a significant impact on our ability to serve the community</p>
+        </div>
+    </div>
+</div>
+
+<div class="donation-form-section">
+    <h2>Make a Donation</h2>
+    <div class="form-container">
+        <div class="donation-options">
+            <h3>Quick Donate</h3>
+            <p>Choose a preset amount or enter a custom amount below</p>
+            <div class="paypal-buttons">
+                <form action="https://www.paypal.com/donate" method="post" target="_top" class="paypal-form">
+                    <input type="hidden" name="hosted_button_id" value="YOUR_PAYPAL_BUTTON_ID_25" />
+                    <input type="hidden" name="amount" value="25.00" />
+                    <button type="submit" class="btn btn-primary paypal-btn" name="submit">
+                        <span class="paypal-icon">💳</span> Donate $25 via PayPal
+                    </button>
+                </form>
+                <form action="https://www.paypal.com/donate" method="post" target="_top" class="paypal-form">
+                    <input type="hidden" name="hosted_button_id" value="YOUR_PAYPAL_BUTTON_ID_50" />
+                    <input type="hidden" name="amount" value="50.00" />
+                    <button type="submit" class="btn btn-primary paypal-btn" name="submit">
+                        <span class="paypal-icon">💳</span> Donate $50 via PayPal
+                    </button>
+                </form>
+                <form action="https://www.paypal.com/donate" method="post" target="_top" class="paypal-form">
+                    <input type="hidden" name="hosted_button_id" value="YOUR_PAYPAL_BUTTON_ID_100" />
+                    <input type="hidden" name="amount" value="100.00" />
+                    <button type="submit" class="btn btn-primary paypal-btn" name="submit">
+                        <span class="paypal-icon">💳</span> Donate $100 via PayPal
+                    </button>
+                </form>
+                <form action="https://www.paypal.com/donate" method="post" target="_top" class="paypal-form">
+                    <input type="hidden" name="hosted_button_id" value="YOUR_PAYPAL_BUTTON_ID_250" />
+                    <input type="hidden" name="amount" value="250.00" />
+                    <button type="submit" class="btn btn-primary paypal-btn" name="submit">
+                        <span class="paypal-icon">💳</span> Donate $250 via PayPal
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="custom-donation">
+            <h3>Custom Amount</h3>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="form" id="paypal-custom-form">
+                <input type="hidden" name="cmd" value="_donations" />
+                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com" />
+                <input type="hidden" name="item_name" value="Parent Enrichment Program Donation" />
+                <input type="hidden" name="currency_code" value="USD" />
+                <input type="hidden" name="return" value="{{ request.scheme }}://{{ request.get_host }}{% url 'main:donate' %}?success=1" />
+                <input type="hidden" name="cancel_return" value="{{ request.scheme }}://{{ request.get_host }}{% url 'main:donate' %}?cancel=1" />
+
+                <div class="form-group">
+                    <label for="donor_name">Your Name (Optional)</label>
+                    <input type="text" id="donor_name" name="first_name" placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="donor_email">Email Address (Optional)</label>
+                    <input type="email" id="donor_email" name="email" placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Donation Amount *</label>
+                    <div class="amount-options">
+                        <button type="button" class="amount-btn" data-amount="25">$25</button>
+                        <button type="button" class="amount-btn" data-amount="50">$50</button>
+                        <button type="button" class="amount-btn" data-amount="100">$100</button>
+                        <button type="button" class="amount-btn" data-amount="250">$250</button>
+                    </div>
+                    <div class="amount-input-wrapper">
+                        <span class="currency-symbol">$</span>
+                        <input type="number" id="amount" name="amount" required placeholder="Enter amount" min="1" step="0.01" value="25.00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message (Optional)</label>
+                    <textarea id="message" name="custom" rows="3" placeholder="Add a personal message with your donation"></textarea>
+                    <small class="form-help">This message will be included with your donation</small>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" required>
+                        I understand this is a donation and will not receive goods or services in return
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <span class="paypal-icon">💳</span> Donate via PayPal
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="paypal-info">
+            <p class="donation-note">
+                <strong>Secure Payment:</strong> All donations are processed securely through PayPal. You can use your PayPal account or any major credit/debit card.
+            </p>
+            <p class="donation-note">
+                <small><strong>Note:</strong> Replace "YOUR_PAYPAL_EMAIL@example.com" with your actual PayPal business email address. For preset amount buttons, you'll need to create PayPal hosted buttons and replace the button IDs. You can create these at <a href="https://www.paypal.com/buttons" target="_blank">PayPal Buttons</a>.</small>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="other-ways">
+    <h2>Other Ways to Support</h2>
+    <div class="support-options">
+        <div class="support-card">
+            <h3>Volunteer</h3>
+            <p>Share your time and expertise by volunteering at events or leading workshops</p>
+            <a href="{% url 'main:about' %}" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="support-card">
+            <h3>Spread the Word</h3>
+            <p>Help us reach more parents by sharing our program with your network</p>
+        </div>
+        <div class="support-card">
+            <h3>Corporate Sponsorship</h3>
+            <p>Interested in corporate sponsorship? Contact us to learn about partnership opportunities</p>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle amount button clicks
+    const amountButtons = document.querySelectorAll('.amount-btn');
+    const amountInput = document.getElementById('amount');
+    
+    amountButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const amount = this.getAttribute('data-amount');
+            amountInput.value = parseFloat(amount).toFixed(2);
+            
+            // Update active state
+            amountButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    
+    // Handle custom amount input
+    if (amountInput) {
+        amountInput.addEventListener('input', function() {
+            // Remove active state from buttons when user types custom amount
+            amountButtons.forEach(btn => btn.classList.remove('active'));
+        });
+    }
+});
+</script>
+{% endblock %}
+
+
+

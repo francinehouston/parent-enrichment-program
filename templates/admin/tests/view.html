@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ test.title }} - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{{ test.title }}</h1>
+    <a href="{{ url_for('list_tests') }}" class="btn btn-outline">← Back to Tests</a>
+</div>
+
+<div class="content-view">
+    <div class="content-meta">
+        <p><strong>Description:</strong> {{ test.description }}</p>
+        <p><strong>Time Limit:</strong> {{ test.time_limit or 'No limit' }}</p>
+        <p><strong>Passing Score:</strong> {{ test.passing_score }}%</p>
+        <p><strong>Questions:</strong> {{ test.questions|length }}</p>
+        <p><strong>Total Points:</strong> {{ total_points }}</p>
+        <p><strong>Created:</strong> {{ test.created_at }}</p>
+        <p><strong>Created By:</strong> {{ test.created_by }}</p>
+    </div>
+
+    <div class="test-questions">
+        <h2>Questions</h2>
+        {% for question in test.questions %}
+        <div class="question-card">
+            <h3>Question {{ loop.index }} ({{ question.points }} point{{ 's' if question.points != 1 else '' }})</h3>
+            <p><strong>{{ question.question }}</strong></p>
+            <div class="options-list">
+                {% for option in question.options %}
+                    {% if option %}
+                    <div class="option {% if loop.index == question.correct_answer %}correct-answer{% endif %}">
+                        {{ loop.index }}. {{ option }}
+                        {% if loop.index == question.correct_answer %}<span class="correct-badge">✓ Correct</span>{% endif %}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

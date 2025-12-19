@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Register as Participant</h1>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <a href="{% url 'main:list_participants' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+

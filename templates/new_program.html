@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}New Program - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Create New Program</h1>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Create Program</button>
+            <a href="{% url 'main:list_programs' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+

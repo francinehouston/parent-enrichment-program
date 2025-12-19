@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ document.title }} - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{{ document.title }}</h1>
+    <a href="{{ url_for('list_documents') }}" class="btn btn-outline">← Back to Documents</a>
+</div>
+
+<div class="content-view">
+    <div class="content-meta">
+        <p><strong>Category:</strong> {{ document.category }}</p>
+        <p><strong>Created:</strong> {{ document.created_at }}</p>
+        <p><strong>Created By:</strong> {{ document.created_by }}</p>
+    </div>
+
+    <div class="content-body">
+        <pre class="document-content">{{ document.content }}</pre>
+    </div>
+</div>
+{% endblock %}
+
+
+

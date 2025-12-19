@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Programs - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>All Programs</h1>
+    {% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'main:new_program' %}" class="btn btn-primary">Create New Program</a>
+    {% endif %}
+</div>
+
+{% if programs %}
+<div class="program-list">
+    {% for program in programs %}
+    <div class="program-card">
+        <h3>{{ program.title }}</h3>
+        <p>{{ program.description }}</p>
+        <div class="program-details">
+            <span>📅 {{ program.date }}</span>
+            <span>🕐 {{ program.time }}</span>
+            <span>📍 {{ program.location }}</span>
+        </div>
+        <small>Created: {{ program.created_at|date:"F d, Y" }}</small>
+        <div class="program-actions">
+            <a href="{% url 'main:program_detail' program.id %}" class="btn btn-outline btn-small">View Details</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p> Parent Education & Certification
+        Youth Sports & Academic Support
+        Mental Health, Safety & Wellness
+        Community Partnerships & Incentives 
+    {% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'main:new_program' %}">Create the first one!</a>
+    {% else %}
+    Check back soon for upcoming programs!
+    {% endif %}
+    </p>
+</div>
+{% endif %}
+{% endblock %}

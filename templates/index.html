@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to the Parent Enrichment Program</h1>
+    <p class="subtitle">Empowering parents through education, support, and community</p>
+    <div class="hero-actions">
+        <a href="{% url 'main:membership' %}" class="btn btn-primary">Join Us</a>
+        <a href="{% url 'main:donate' %}" class="btn btn-secondary">Support Our Mission</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <div class="feature-icon">📚</div>
+        <h3>Educational Workshops</h3>
+        <p>Learn from experts about child development, parenting strategies, and family wellness.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Community Support</h3>
+        <p>Connect with other parents and build a supportive network in your community.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">💡</div>
+        <h3>Resources & Tools</h3>
+        <p>Access valuable resources, guides, and tools to help you on your parenting journey.</p>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat-card">
+        <h2>{{ programs|length }}</h2>
+        <p>Active Programs</p>
+    </div>
+    <div class="stat-card">
+        <h2>{{ participant_count }}</h2>
+        <p>Registered Participants</p>
+    </div>
+    <div class="stat-card">
+        <h2>100%</h2>
+        <p>Community Focused</p>
+    </div>
+</div>
+
+{% if programs %}
+<div class="recent-programs">
+    <h2>Upcoming Programs</h2>
+    <div class="program-grid">
+        {% for program in programs|slice:":3" %}
+        <div class="program-card">
+            <h3>{{ program.title }}</h3>
+            <p>{{ program.description }}</p>
+            <div class="program-details">
+                <span>📅 {{ program.date }}</span>
+                <span>🕐 {{ program.time }}</span>
+                <span>📍 {{ program.location }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center">
+        <a href="{% url 'main:list_programs' %}" class="btn btn-outline">View All Programs</a>
+    </div>
+</div>
+{% else %}
+<div class="call-to-action">
+    <h2>Get Started Today</h2>
+    <p>Join our community and discover programs designed to support you and your family.</p>
+    <a href="{% url 'main:membership' %}" class="btn btn-primary">Become a Member</a>
+</div>
+{% endif %}
+{% endblock %}
+

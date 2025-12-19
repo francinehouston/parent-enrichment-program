@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ quiz.title }} - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{{ quiz.title }}</h1>
+    <a href="{{ url_for('list_quizzes') }}" class="btn btn-outline">← Back to Quizzes</a>
+</div>
+
+<div class="content-view">
+    <div class="content-meta">
+        <p><strong>Description:</strong> {{ quiz.description }}</p>
+        <p><strong>Time Limit:</strong> {{ quiz.time_limit or 'No limit' }}</p>
+        <p><strong>Questions:</strong> {{ quiz.questions|length }}</p>
+        <p><strong>Created:</strong> {{ quiz.created_at }}</p>
+        <p><strong>Created By:</strong> {{ quiz.created_by }}</p>
+    </div>
+
+    <div class="quiz-questions">
+        <h2>Questions</h2>
+        {% for question in quiz.questions %}
+        <div class="question-card">
+            <h3>Question {{ loop.index }}</h3>
+            <p><strong>{{ question.question }}</strong></p>
+            <div class="options-list">
+                {% for option in question.options %}
+                    {% if option %}
+                    <div class="option {% if loop.index == question.correct_answer %}correct-answer{% endif %}">
+                        {{ loop.index }}. {{ option }}
+                        {% if loop.index == question.correct_answer %}<span class="correct-badge">✓ Correct</span>{% endif %}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+

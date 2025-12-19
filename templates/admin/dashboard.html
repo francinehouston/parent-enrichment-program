@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Admin Dashboard</h1>
+    <a href="{% url 'admin:logout' %}" class="btn btn-secondary">Logout</a>
+</div>
+
+<div class="admin-welcome">
+    <p>Welcome, <strong>{{ user.username }}</strong>! Manage all content for the Parent Enrichment Program.</p>
+</div>
+
+<div class="admin-stats">
+    <h2>Content Overview</h2>
+    <div class="stats-grid">
+        <a href="{% url 'admin:main_document_changelist' %}" class="stat-card-link">
+            <div class="stat-card">
+                <h2>{{ stats.documents }}</h2>
+                <p>Documents</p>
+            </div>
+        </a>
+        <a href="{% url 'admin:main_course_changelist' %}" class="stat-card-link">
+            <div class="stat-card">
+                <h2>{{ stats.courses }}</h2>
+                <p>Courses</p>
+            </div>
+        </a>
+        <a href="{% url 'admin:main_quiz_changelist' %}" class="stat-card-link">
+            <div class="stat-card">
+                <h2>{{ stats.quizzes }}</h2>
+                <p>Quizzes</p>
+            </div>
+        </a>
+        <a href="{% url 'admin:main_video_changelist' %}" class="stat-card-link">
+            <div class="stat-card">
+                <h2>{{ stats.videos }}</h2>
+                <p>Videos</p>
+            </div>
+        </a>
+        <a href="{% url 'admin:main_test_changelist' %}" class="stat-card-link">
+            <div class="stat-card">
+                <h2>{{ stats.tests }}</h2>
+                <p>Tests</p>
+            </div>
+        </a>
+        <a href="{% url 'admin:main_certification_changelist' %}" class="stat-card-link">
+            <div class="stat-card">
+                <h2>{{ stats.certifications }}</h2>
+                <p>Certifications</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="admin-quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="action-buttons">
+        <a href="{% url 'admin:main_document_add' %}" class="btn btn-primary">Create Document</a>
+        <a href="{% url 'admin:main_course_add' %}" class="btn btn-primary">Create Course</a>
+        <a href="{% url 'admin:main_quiz_add' %}" class="btn btn-primary">Create Quiz</a>
+        <a href="{% url 'admin:main_video_add' %}" class="btn btn-primary">Add Video</a>
+        <a href="{% url 'admin:main_test_add' %}" class="btn btn-primary">Create Test</a>
+        <a href="{% url 'admin:main_certification_add' %}" class="btn btn-primary">Create Certification</a>
+    </div>
+</div>
+{% endblock %}
+
+
+

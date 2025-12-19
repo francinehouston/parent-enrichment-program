@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}New Test - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Create New Test</h1>
+</div>
+
+<div class="form-container">
+    <form method="POST" class="form" id="test-form">
+        <div class="form-group">
+            <label for="title">Test Title *</label>
+            <input type="text" id="title" name="title" required placeholder="Enter test title">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description *</label>
+            <textarea id="description" name="description" rows="3" required placeholder="Enter test description"></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="time_limit">Time Limit (minutes)</label>
+                <input type="number" id="time_limit" name="time_limit" min="1" placeholder="Leave empty for no limit">
+            </div>
+
+            <div class="form-group">
+                <label for="passing_score">Passing Score (%) *</label>
+                <input type="number" id="passing_score" name="passing_score" min="0" max="100" value="70" required>
+            </div>
+        </div>
+
+        <div class="questions-section">
+            <h3>Questions</h3>
+            <div id="questions-container">
+                <!-- Questions will be added here dynamically -->
+            </div>
+            <button type="button" class="btn btn-secondary" onclick="addQuestion()">Add Question</button>
+        </div>
+
+        <input type="hidden" id="question_count" name="question_count" value="0">
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Create Test</button>
+            <a href="{{ url_for('list_tests') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script>
+let questionCounter = 0;
+
+function addQuestion() {
+    questionCounter++;
+    const container = document.getElementById('questions-container');
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'question-item';
+    questionDiv.innerHTML = `
+        <h4>Question ${questionCounter}</h4>
+        <div class="form-group">
+            <label>Question Text *</label>
+            <input type="text" name="question_${questionCounter}" required placeholder="Enter question">
+        </div>
+        <div class="form-group">
+            <label>Option 1 *</label>
+            <input type="text" name="option_${questionCounter}_1" required placeholder="Option 1">
+        </div>
+        <div class="form-group">
+            <label>Option 2 *</label>
+            <input type="text" name="option_${questionCounter}_2" required placeholder="Option 2">
+        </div>
+        <div class="form-group">
+            <label>Option 3</label>
+            <input type="text" name="option_${questionCounter}_3" placeholder="Option 3">
+        </div>
+        <div class="form-group">
+            <label>Option 4</label>
+            <input type="text" name="option_${questionCounter}_4" placeholder="Option 4">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Correct Answer</label>
+                <select name="correct_${questionCounter}" required>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                    <option value="4">Option 4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Points</label>
+                <input type="number" name="points_${questionCounter}" value="1" min="1" required>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary btn-small" onclick="removeQuestion(this)">Remove Question</button>
+    `;
+    container.appendChild(questionDiv);
+    document.getElementById('question_count').value = questionCounter;
+}
+
+function removeQuestion(btn) {
+    btn.parentElement.remove();
+    questionCounter--;
+    document.getElementById('question_count').value = questionCounter;
+}
+
+// Add first question by default
+document.addEventListener('DOMContentLoaded', function() {
+    addQuestion();
+});
+</script>
+{% endblock %}
+
+
+

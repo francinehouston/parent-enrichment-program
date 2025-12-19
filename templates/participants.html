@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Participants - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Registered Participants</h1>
+    <a href="{% url 'main:new_participant' %}" class="btn btn-primary">Register New Participant</a>
+</div>
+
+{% if participants %}
+<div class="participant-list">
+    {% for participant in participants %}
+    <div class="participant-card">
+        <h3>{{ participant.name }}</h3>
+        <div class="participant-details">
+            <p>📧 {{ participant.email }}</p>
+            <p>📞 {{ participant.phone }}</p>
+            <p>👶 Children Ages: {{ participant.children_ages }}</p>
+        </div>
+        <small>Registered: {{ participant.registered_at }}</small>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No participants yet. <a href="{% url 'main:new_participant' %}">Register the first one!</a></p>
+</div>
+{% endif %}
+{% endblock %}
+
+
+
+
+

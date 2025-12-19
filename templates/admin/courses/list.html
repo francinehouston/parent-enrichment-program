@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Courses - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Online Courses</h1>
+    <a href="{{ url_for('new_course') }}" class="btn btn-primary">Create New Course</a>
+</div>
+
+{% if courses %}
+<div class="content-list">
+    {% for course in courses %}
+    <div class="content-card">
+        <h3><a href="{{ url_for('view_course', course_id=course.id) }}">{{ course.title }}</a></h3>
+        <p class="content-meta">
+            <span>Level: {{ course.level }}</span> | 
+            <span>Duration: {{ course.duration }}</span> | 
+            <span>Created: {{ course.created_at }}</span>
+        </p>
+        <p class="content-preview">{{ course.description[:200] }}{% if course.description|length > 200 %}...{% endif %}</p>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No courses yet. <a href="{{ url_for('new_course') }}">Create the first one!</a></p>
+</div>
+{% endif %}
+
+<div class="back-link">
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline">← Back to Dashboard</a>
+</div>
+{% endblock %}
+
+
+

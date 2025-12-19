@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}New Certification - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Create New Certification</h1>
+</div>
+
+<div class="form-container">
+    <form method="POST" class="form">
+        <div class="form-group">
+            <label for="title">Certification Title *</label>
+            <input type="text" id="title" name="title" required placeholder="Enter certification title">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description *</label>
+            <textarea id="description" name="description" rows="5" required placeholder="Enter certification description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="requirements">Requirements *</label>
+            <textarea id="requirements" name="requirements" rows="8" required placeholder="Enter certification requirements (e.g., complete course, pass test, etc.)"></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="validity_period">Validity Period</label>
+                <input type="text" id="validity_period" name="validity_period" placeholder="e.g., 1 year, 2 years, Lifetime">
+            </div>
+
+            <div class="form-group">
+                <label for="associated_course">Associated Course (Optional)</label>
+                <select id="associated_course" name="associated_course" class="form-select">
+                    <option value="">None</option>
+                    {% for course in courses %}
+                    <option value="{{ course.id }}">{{ course.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Create Certification</button>
+            <a href="{{ url_for('list_certifications') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+
