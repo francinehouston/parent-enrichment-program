@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Vendor - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Offer Your Service to P.E.P. Members</h1>
+</div>
+
+<div class="content-section">
+    <div class="vendor-intro">
+        <p class="intro-text">Help uplift your community, expand your brand awareness, and build a community of love, value, and strong service to others.</p>
+    </div>
+
+    <div class="vendor-benefits">
+        <h2>Why Partner with P.E.P.?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🌱</div>
+                <h3>Uplift Your Community</h3>
+                <p>Make a meaningful impact by providing valuable services to families and student athletes who are committed to growth and excellence.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📢</div>
+                <h3>Expand Brand Awareness</h3>
+                <p>Connect with engaged, active community members who value quality services and are loyal to businesses that support their mission.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">❤️</div>
+                <h3>Build Community of Love</h3>
+                <p>Join a network of businesses and organizations dedicated to creating positive change and supporting families in meaningful ways.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💎</div>
+                <h3>Deliver Value</h3>
+                <p>Showcase your commitment to excellence by providing services that help P.E.P. members achieve their goals and strengthen their families.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🤝</div>
+                <h3>Strong Service to Others</h3>
+                <p>Demonstrate your dedication to community service and social responsibility while building lasting relationships with families.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🏆</div>
+                <h3>Recognition & Growth</h3>
+                <p>Gain recognition as a community partner and grow your business through word-of-mouth referrals from satisfied P.E.P. members.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="vendor-opportunities">
+        <h2>How You Can Get Involved</h2>
+        <div class="opportunities-content">
+            <p>As a vendor partner with the Parent Enrichment Program, you can offer your services in various ways:</p>
+            <ul class="opportunities-list">
+                <li><strong>Special Discounts:</strong> Provide exclusive offers and discounts to P.E.P. members</li>
+                <li><strong>Service Packages:</strong> Create tailored service packages designed for families and student athletes</li>
+                <li><strong>Event Participation:</strong> Showcase your services at P.E.P. events, workshops, and community gatherings</li>
+                <li><strong>Resource Sharing:</strong> Contribute expertise, resources, or educational content to support our programs</li>
+                <li><strong>Sponsorship Opportunities:</strong> Sponsor events, workshops, or program initiatives</li>
+                <li><strong>Referral Partnerships:</strong> Build mutually beneficial relationships with other community partners</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="vendor-cta">
+        <h2>Join Our Community of Partners</h2>
+        <p>If you're interested in offering your services to P.E.P. members and becoming part of our community network, we'd love to hear from you.</p>
+        <div class="cta-buttons">
+            <a href="{% url 'main:about' %}" class="btn btn-primary">Learn More About P.E.P.</a>
+            <a href="{% url 'main:donate' %}" class="btn btn-secondary">Support Our Mission</a>
+        </div>
+        <p class="contact-note">For vendor partnership inquiries, please contact us through our main channels or reach out to learn more about how your business can make a difference in our community.</p>
+    </div>
+</div>
+{% endblock %}
+

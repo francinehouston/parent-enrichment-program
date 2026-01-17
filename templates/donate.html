@@ -16,12 +16,12 @@
     <div class="impact-grid">
         <div class="impact-card">
             <div class="impact-amount">$25</div>
-            <h3>Sponsor a Workshop</h3>
+            <h3>Sponsor education</h3>
             <p>Helps cover materials and resources for one educational workshop</p>
         </div>
         <div class="impact-card">
             <div class="impact-amount">$50</div>
-            <h3>Support a Family</h3>
+            <h3>Support a event</h3>
             <p>Provides a family with access to resources and support for a month</p>
         </div>
         <div class="impact-card">
@@ -40,102 +40,131 @@
 <div class="donation-form-section">
     <h2>Make a Donation</h2>
     <div class="form-container">
+        <!-- Quick Donate Amount Buttons -->
         <div class="donation-options">
             <h3>Quick Donate</h3>
             <p>Choose a preset amount or enter a custom amount below</p>
-            <div class="paypal-buttons">
-                <form action="https://www.paypal.com/donate" method="post" target="_top" class="paypal-form">
-                    <input type="hidden" name="hosted_button_id" value="YOUR_PAYPAL_BUTTON_ID_25" />
-                    <input type="hidden" name="amount" value="25.00" />
-                    <button type="submit" class="btn btn-primary paypal-btn" name="submit">
-                        <span class="paypal-icon">💳</span> Donate $25 via PayPal
-                    </button>
-                </form>
-                <form action="https://www.paypal.com/donate" method="post" target="_top" class="paypal-form">
-                    <input type="hidden" name="hosted_button_id" value="YOUR_PAYPAL_BUTTON_ID_50" />
-                    <input type="hidden" name="amount" value="50.00" />
-                    <button type="submit" class="btn btn-primary paypal-btn" name="submit">
-                        <span class="paypal-icon">💳</span> Donate $50 via PayPal
-                    </button>
-                </form>
-                <form action="https://www.paypal.com/donate" method="post" target="_top" class="paypal-form">
-                    <input type="hidden" name="hosted_button_id" value="YOUR_PAYPAL_BUTTON_ID_100" />
-                    <input type="hidden" name="amount" value="100.00" />
-                    <button type="submit" class="btn btn-primary paypal-btn" name="submit">
-                        <span class="paypal-icon">💳</span> Donate $100 via PayPal
-                    </button>
-                </form>
-                <form action="https://www.paypal.com/donate" method="post" target="_top" class="paypal-form">
-                    <input type="hidden" name="hosted_button_id" value="YOUR_PAYPAL_BUTTON_ID_250" />
-                    <input type="hidden" name="amount" value="250.00" />
-                    <button type="submit" class="btn btn-primary paypal-btn" name="submit">
-                        <span class="paypal-icon">💳</span> Donate $250 via PayPal
-                    </button>
-                </form>
+            <div class="quick-donate-buttons">
+                <button type="button" class="btn btn-yellow quick-donate-btn" onclick="setCardAmount(25)">
+                    💳 Donate $25
+                </button>
+                <button type="button" class="btn btn-yellow quick-donate-btn" onclick="setCardAmount(50)">
+                    💳 Donate $50
+                </button>
+                <button type="button" class="btn btn-yellow quick-donate-btn" onclick="setCardAmount(100)">
+                    💳 Donate $100
+                </button>
+                <button type="button" class="btn btn-yellow quick-donate-btn" onclick="setCardAmount(250)">
+                    💳 Donate $250
+                </button>
             </div>
         </div>
 
-        <div class="custom-donation">
-            <h3>Custom Amount</h3>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="form" id="paypal-custom-form">
-                <input type="hidden" name="cmd" value="_donations" />
-                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com" />
-                <input type="hidden" name="item_name" value="Parent Enrichment Program Donation" />
-                <input type="hidden" name="currency_code" value="USD" />
-                <input type="hidden" name="return" value="{{ request.scheme }}://{{ request.get_host }}{% url 'main:donate' %}?success=1" />
-                <input type="hidden" name="cancel_return" value="{{ request.scheme }}://{{ request.get_host }}{% url 'main:donate' %}?cancel=1" />
-
+        <!-- Credit/Debit Card Payment Form -->
+        <div class="card-donation">
+            <h3>Donate with Credit/Debit Card</h3>
+            <form method="POST" class="form" id="card-donation-form">
+                {% csrf_token %}
                 <div class="form-group">
-                    <label for="donor_name">Your Name (Optional)</label>
-                    <input type="text" id="donor_name" name="first_name" placeholder="Enter your name">
+                    <label for="donor_name_card">Your Name *</label>
+                    <input type="text" id="donor_name_card" name="donor_name" required placeholder="Enter your full name">
                 </div>
 
                 <div class="form-group">
-                    <label for="donor_email">Email Address (Optional)</label>
-                    <input type="email" id="donor_email" name="email" placeholder="your.email@example.com">
+                    <label for="donor_email_card">Email Address *</label>
+                    <input type="email" id="donor_email_card" name="donor_email" required placeholder="your.email@example.com">
                 </div>
 
                 <div class="form-group">
-                    <label for="amount">Donation Amount *</label>
+                    <label for="amount_card">Donation Amount *</label>
                     <div class="amount-options">
-                        <button type="button" class="amount-btn" data-amount="25">$25</button>
-                        <button type="button" class="amount-btn" data-amount="50">$50</button>
-                        <button type="button" class="amount-btn" data-amount="100">$100</button>
-                        <button type="button" class="amount-btn" data-amount="250">$250</button>
+                        <button type="button" class="amount-btn" data-amount="25" onclick="setCardAmount(25)">$25</button>
+                        <button type="button" class="amount-btn" data-amount="50" onclick="setCardAmount(50)">$50</button>
+                        <button type="button" class="amount-btn" data-amount="100" onclick="setCardAmount(100)">$100</button>
+                        <button type="button" class="amount-btn" data-amount="250" onclick="setCardAmount(250)">$250</button>
                     </div>
                     <div class="amount-input-wrapper">
                         <span class="currency-symbol">$</span>
-                        <input type="number" id="amount" name="amount" required placeholder="Enter amount" min="1" step="0.01" value="25.00">
+                        <input type="number" id="amount_card" name="amount" required placeholder="Enter amount" min="1" step="0.01" value="25.00">
+                    </div>
+                </div>
+
+                <div class="card-details-section">
+                    <h4>Card Details</h4>
+                    <div class="security-badge">
+                        <span class="lock-icon">🔒</span>
+                        <span>Your card information is encrypted and processed securely by Stripe and Plaid. We never see or store your full card details.</span>
+                    </div>
+                    
+                    <!-- Stripe Elements will be mounted here -->
+                    <div class="form-group">
+                        <label for="card-element">Card Number *</label>
+                        <div id="card-element" class="stripe-element">
+                            <!-- Stripe Elements will create form elements here -->
+                        </div>
+                        <div id="card-errors" role="alert" class="stripe-errors"></div>
+                    </div>
+                    
+                    <input type="hidden" id="stripe-payment-method-id" name="stripe_payment_method_id">
+
+                    <div class="form-group">
+                        <label for="billing_address">Billing Address *</label>
+                        <input type="text" id="billing_address" name="billing_address" required placeholder="Street address">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="billing_city">City *</label>
+                            <input type="text" id="billing_city" name="billing_city" required placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <label for="billing_state">State *</label>
+                            <input type="text" id="billing_state" name="billing_state" required placeholder="State">
+                        </div>
+                        <div class="form-group">
+                            <label for="billing_zip">ZIP Code *</label>
+                            <input type="text" id="billing_zip" name="billing_zip" required placeholder="12345" pattern="[0-9]{5}">
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="message">Message (Optional)</label>
-                    <textarea id="message" name="custom" rows="3" placeholder="Add a personal message with your donation"></textarea>
-                    <small class="form-help">This message will be included with your donation</small>
+                    <label for="message_card">Message (Optional)</label>
+                    <textarea id="message_card" name="message" rows="3" placeholder="Add a personal message with your donation"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label>
                         <input type="checkbox" required>
-                        I understand this is a donation and will not receive goods or services in return
+                        I understand this is a donation and will not receive goods or services in return *
                     </label>
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary btn-large">
-                        <span class="paypal-icon">💳</span> Donate via PayPal
+                    <button type="submit" class="btn btn-yellow btn-large">
+                        <span class="payment-icon">💳</span> Donate with Stripe & Plaid
                     </button>
                 </div>
             </form>
         </div>
 
-        <div class="paypal-info">
+        <div class="payment-info">
+            <div class="security-features">
+                <h4>🔒 Security Features</h4>
+                <ul class="security-list">
+                    <li><strong>PCI Compliant:</strong> Card data is processed directly by Stripe - never touches our servers</li>
+                    <li><strong>Bank-Level Security:</strong> Bank account information is securely processed through Plaid using bank-level encryption</li>
+                    <li><strong>Encrypted:</strong> All payment information is encrypted using industry-standard SSL/TLS</li>
+                    <li><strong>Tokenized:</strong> Your card details are converted to a secure token - we never see your full card number</li>
+                    <li><strong>Secure Storage:</strong> Stripe handles all sensitive data according to PCI DSS Level 1 standards</li>
+                    <li><strong>Plaid Security:</strong> Plaid uses end-to-end encryption and is SOC 2 Type 2 certified</li>
+                </ul>
+            </div>
             <p class="donation-note">
-                <strong>Secure Payment:</strong> All donations are processed securely through PayPal. You can use your PayPal account or any major credit/debit card.
+                <strong>Secure Payment:</strong> All donations are processed securely through Stripe and Plaid. Your payment information is encrypted and tokenized - we never see or store your full card or bank account details.
             </p>
             <p class="donation-note">
-                <small><strong>Note:</strong> Replace "YOUR_PAYPAL_EMAIL@example.com" with your actual PayPal business email address. For preset amount buttons, you'll need to create PayPal hosted buttons and replace the button IDs. You can create these at <a href="https://www.paypal.com/buttons" target="_blank">PayPal Buttons</a>.</small>
+                <small><strong>Setup Required:</strong> Replace 'pk_test_YOUR_STRIPE_PUBLISHABLE_KEY' in the JavaScript with your actual Stripe publishable key from <a href="https://dashboard.stripe.com/apikeys" target="_blank">Stripe Dashboard</a>. Configure Plaid API keys from <a href="https://dashboard.plaid.com/developers/api-keys" target="_blank">Plaid Dashboard</a>. Then integrate Stripe and Plaid APIs in your Django backend to process payments. Learn more at <a href="https://stripe.com/docs" target="_blank">Stripe Documentation</a> and <a href="https://plaid.com/docs" target="_blank">Plaid Documentation</a>.</small>
             </p>
         </div>
     </div>
@@ -160,28 +189,158 @@
     </div>
 </div>
 
+<!-- Stripe.js Library -->
+<script src="https://js.stripe.com/v3/"></script>
+
 <script>
+// Initialize Stripe - Replace 'pk_test_...' with your actual Stripe publishable key
+// Get this from: https://dashboard.stripe.com/apikeys
+const stripe = Stripe('pk_test_YOUR_STRIPE_PUBLISHABLE_KEY'); // Replace with your Stripe publishable key
+const elements = stripe.elements();
+
+// Create and mount the card element
+const cardElement = elements.create('card', {
+    style: {
+        base: {
+            fontSize: '16px',
+            color: '#424770',
+            '::placeholder': {
+                color: '#aab7c4',
+            },
+        },
+        invalid: {
+            color: '#9e2146',
+        },
+    },
+});
+
+const cardElementContainer = document.getElementById('card-element');
+if (cardElementContainer) {
+    cardElement.mount('#card-element');
+}
+
+// Handle real-time validation errors from the card Element
+cardElement.on('change', function(event) {
+    const displayError = document.getElementById('card-errors');
+    if (event.error) {
+        displayError.textContent = event.error.message;
+        displayError.classList.add('error');
+    } else {
+        displayError.textContent = '';
+        displayError.classList.remove('error');
+    }
+});
+
+function setCardAmount(amount) {
+    const amountInput = document.getElementById('amount_card');
+    if (amountInput) {
+        amountInput.value = parseFloat(amount).toFixed(2);
+        
+        // Update active state for quick donate buttons
+        document.querySelectorAll('.quick-donate-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Update active state for amount buttons
+        document.querySelectorAll('.amount-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-amount') == amount) {
+                btn.classList.add('active');
+            }
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Handle amount button clicks
     const amountButtons = document.querySelectorAll('.amount-btn');
-    const amountInput = document.getElementById('amount');
+    const amountInput = document.getElementById('amount_card');
     
-    amountButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const amount = this.getAttribute('data-amount');
-            amountInput.value = parseFloat(amount).toFixed(2);
-            
-            // Update active state
-            amountButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
+    if (amountButtons.length > 0 && amountInput) {
+        amountButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const amount = this.getAttribute('data-amount');
+                amountInput.value = parseFloat(amount).toFixed(2);
+                
+                // Update active state
+                amountButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
         });
-    });
-    
-    // Handle custom amount input
-    if (amountInput) {
+        
+        // Handle custom amount input
         amountInput.addEventListener('input', function() {
             // Remove active state from buttons when user types custom amount
             amountButtons.forEach(btn => btn.classList.remove('active'));
+        });
+    }
+
+    // Handle secure card donation form submission
+    const cardForm = document.getElementById('card-donation-form');
+    if (cardForm) {
+        cardForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = cardForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="payment-icon">⏳</span> Processing...';
+            
+            const displayError = document.getElementById('card-errors');
+            
+            try {
+                // Create payment method using Stripe Elements
+                // This securely tokenizes the card without sending it to our server
+                const {paymentMethod, error} = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: cardElement,
+                    billing_details: {
+                        name: document.getElementById('donor_name_card').value,
+                        email: document.getElementById('donor_email_card').value,
+                        address: {
+                            line1: document.getElementById('billing_address').value,
+                            city: document.getElementById('billing_city').value,
+                            state: document.getElementById('billing_state').value,
+                            postal_code: document.getElementById('billing_zip').value,
+                        },
+                    },
+                });
+
+                if (error) {
+                    // Show error to user
+                    displayError.textContent = error.message;
+                    displayError.classList.add('error');
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                } else {
+                    // Payment method created successfully
+                    // Store the payment method ID (not the card details!)
+                    document.getElementById('stripe-payment-method-id').value = paymentMethod.id;
+                    
+                    // Now submit the form to your Django backend
+                    // Your backend will use the payment method ID to create a payment intent
+                    // IMPORTANT: Never send card details to your server - only the payment method ID
+                    
+                    // For now, show a message that backend integration is needed
+                    displayError.textContent = 'Payment method created successfully. Backend integration required to process payment.';
+                    displayError.classList.remove('error');
+                    displayError.classList.add('success');
+                    
+                    // TODO: Uncomment this when backend is ready:
+                    // cardForm.submit();
+                    
+                    // Reset button after a moment
+                    setTimeout(() => {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
+                    }, 3000);
+                }
+            } catch (err) {
+                displayError.textContent = 'An error occurred. Please try again.';
+                displayError.classList.add('error');
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            }
         });
     }
 });

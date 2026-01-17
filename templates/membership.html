@@ -11,18 +11,53 @@
     <p class="intro-text">Join our community of parents and gain access to exclusive programs, resources, and support. Membership is open to all parents and caregivers who want to grow, learn, and connect.</p>
 </div>
 
+<div class="membership-categories-section">
+    <h2>Membership Categories</h2>
+    <div class="categories-container">
+        <div class="category-card">
+            <div class="category-header">
+                <span class="category-icon">👨‍👩‍👧‍👦</span>
+                <h3>Parent/Guardian Member</h3>
+            </div>
+            <p class="category-description">Parent/Guardian Member is an adult parent, legal guardian or primary caregiver who enrolls in the program and is responsible for complying with membership rules, course requirements, and communication with the program.</p>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header">
+                <span class="category-icon">🏃‍♂️</span>
+                <h3>Student Athlete Participant</h3>
+            </div>
+            <p class="category-description">A Student Athlete Participant is a youth or young adult connected to a Parent/Guardian Member and enrolled in a sports curriculum, team, or training program recognized by P.E.P. or one of its partners.</p>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header">
+                <span class="category-icon">👔</span>
+                <h3>Community/Service Provider Member</h3>
+                <span class="category-badge">Optional Category</span>
+            </div>
+            <p class="category-description">Where applicable, coaches, mentors, trainers, or service providers may be listed as participants or partners in the program. These individuals must comply with P.E.P. conduct standards and any screening requirements set by MMFP or partner organizations.</p>
+        </div>
+    </div>
+</div>
+
 <div class="membership-benefits">
     <h2>Member Benefits</h2>
     <div class="benefits-grid">
-        <div class="benefit-card">
+        {% comment %} <div class="benefit-card">
             <div class="benefit-icon">🎓</div>
             <h3>Free Workshops</h3>
             <p>Access to all educational workshops and seminars at no additional cost</p>
-        </div>
-        <div class="benefit-card">
+        </div> {% endcomment %}
+        {% comment %} <div class="benefit-card">
             <div class="benefit-icon">📚</div>
             <h3>Resource Library</h3>
             <p>Borrow books, guides, and access our online resource database</p>
+        </div> {% endcomment %}
+        <div class="benefit-card">
+            <div class="benefit-icon">🎓</div>
+            <h3>Education Programs</h3>
+            <p>Members will receive free certifications in select programs.Programs vary based on P.E.P. partners and contributors</p>
         </div>
         <div class="benefit-card">
             <div class="benefit-icon">👥</div>
@@ -32,18 +67,424 @@
         <div class="benefit-card">
             <div class="benefit-icon">🎉</div>
             <h3>Community Events</h3>
-            <p>Priority registration for family events and community gatherings</p>
+            <p>Free and /or VIP access to local events and gatherings.</p>
         </div>
         <div class="benefit-card">
             <div class="benefit-icon">💬</div>
-            <h3>Expert Consultations</h3>
-            <p>Access to one-on-one consultations with parenting experts</p>
+            <h3>Local Business Services</h3>
+            <p>Members will receive discounted, free or sponsored services from local and community based groups and businesses.</p>
         </div>
-        <div class="benefit-card">
+        {% comment %} <div class="benefit-card">
             <div class="benefit-icon">📧</div>
             <h3>Newsletter</h3>
             <p>Monthly newsletter with tips, resources, and program updates</p>
+        </div> {% endcomment %}
+    </div>
+</div>
+
+<div class="member-standards-section">
+    <h2>Member Standards and Requirements</h2>
+    
+    <div class="standards-container">
+        <!-- Student Athlete Attendance Requirements -->
+        <div class="standard-card">
+            <div class="standard-header">
+                <span class="standard-icon">📚</span>
+                <h3>Student Athlete Attendance Requirements</h3>
+            </div>
+            <p class="standard-intro">To remain in good standing, each Student Athlete Participant is expected to maintain excellent attendance in their primary academic program and sports curriculum.</p>
+            
+            <div class="standard-subsection">
+                <h4>Minimum Standard</h4>
+                <ul class="standard-list">
+                    <li>Goal of <strong>perfect attendance</strong> for classes and practices</li>
+                    <li>Up to <strong>two (2) excused absences</strong> per academic term or season without a doctor's note may be allowed for illness, family emergency, or unavoidable conflicts</li>
+                    <li>Additional absences must be <strong>documented with a school note, doctor's note, or approved communication</strong> with the program or coach</li>
+                </ul>
+            </div>
+
+            <div class="standard-subsection">
+                <h4>Failure to Meet Attendance Expectations</h4>
+                <p class="standard-warning">Failure to meet attendance expectations may result in:</p>
+                <ul class="standard-list">
+                    <li>Parent/Member check-in and support conversation</li>
+                    <li>Probationary status for the member and/or student athlete</li>
+                    <li>Temporary suspension from certain events, benefits, or incentives</li>
+                </ul>
+            </div>
         </div>
+
+        <!-- Event Participation Requirements -->
+        <div class="standard-card">
+            <div class="standard-header">
+                <span class="standard-icon">🎉</span>
+                <h3>Event Participation Requirements</h3>
+            </div>
+            <p class="standard-intro">To remain an active P.E.P. member in good standing, each Parent/Guardian Member is expected to attend and/or support at least <strong>three (3) P.E.P. approved events per year</strong>, which may include:</p>
+            
+            <ul class="standard-list">
+                <li>Parent and athlete nights</li>
+                <li>Educational workshops and trainings</li>
+                <li>Community service events</li>
+                <li>Gala or recognition nights</li>
+                <li>Other official P.E.P. or partner events</li>
+            </ul>
+            
+            <p class="standard-note">Verified participants help maintain access to certain incentives, discounts, recognition opportunities, and advanced programming.</p>
+        </div>
+
+        <!-- Mandatory Course Requirements -->
+        <div class="standard-card">
+            <div class="standard-header">
+                <span class="standard-icon">📜</span>
+                <h3>Mandatory Course Requirements</h3>
+            </div>
+            <p class="standard-intro">All parent/guardian members agree to complete the following core courses within a reasonable time frame established by the program.</p>
+            
+            <div class="course-details">
+                <div class="course-item">
+                    <h4>P.C.O.R. Course</h4>
+                    <p>A Parent/Coach/Official/Relations-style course or equivalent focusing on leadership, communication, conflict resolution, and responsible sideline behavior.</p>
+                </div>
+
+                <div class="course-item">
+                    <h4>CPR Certification</h4>
+                    <p>An Approved CPR or CPR/First Aid course recognized by the program, equipping members with basic life-saving skills and emergency readiness.</p>
+                </div>
+
+                <div class="course-item">
+                    <h4>Additional Mandatory Courses</h4>
+                    <p>The program may designate additional required courses from time to time, such as:</p>
+                    <ul class="course-sublist">
+                        <li>Basic sports safety and injury awareness</li>
+                        <li>Mental health awareness and referral basics</li>
+                        <li>Program-specific compliance training</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="course-note">
+                <p><strong>Important:</strong> Members are responsible for scheduling and completing these courses. Failure to complete required courses may place a member on probationary status or limit their access to certain benefits.</p>
+            </div>
+        </div>
+
+        <!-- Sports Curriculum Enrollment -->
+        <div class="standard-card">
+            <div class="standard-header">
+                <span class="standard-icon">⚽</span>
+                <h3>Sports Curriculum Enrollment</h3>
+            </div>
+            <p class="standard-intro">To align with the mission of supporting youth through athletics, each Student Athlete Participant connected to the program should be enrolled in a sports curriculum or organized sports activity, which may include:</p>
+            <ul class="standard-list">
+                <li><strong>School-sponsored sports teams</strong></li>
+                <li><strong>Community or club teams</strong></li>
+                <li><strong>Training or development programs</strong> partnered with P.E.P.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="code-of-conduct-section">
+    <h2>Code of Conduct</h2>
+    
+    <div class="conduct-container">
+        <!-- General Conduct -->
+        <div class="conduct-card">
+            <div class="conduct-header">
+                <span class="conduct-icon">🤝</span>
+                <h3>General Conduct</h3>
+            </div>
+            <p class="conduct-intro">All members and participants shall:</p>
+            <ul class="conduct-list">
+                <li>Treat all youth, parents, staff, and partners with <strong>respect and dignity</strong></li>
+                <li>Refrain from <strong>bullying, harassment, discrimination, or abusive language or behavior</strong></li>
+                <li>Follow the instructions of <strong>coaches, officials, and program staff</strong> at events and trainings</li>
+                <li>Uphold <strong>sportsmanship, integrity, and fairness</strong> in all competitive and non-competitive settings</li>
+            </ul>
+        </div>
+
+        <!-- Substance and Safety Policy -->
+        <div class="conduct-card">
+            <div class="conduct-header">
+                <span class="conduct-icon">🛡️</span>
+                <h3>Substance and Safety Policy</h3>
+            </div>
+            <ul class="conduct-list">
+                <li>The use, possession, or distribution of <strong>illegal drugs or alcohol</strong> at P.E.P. events is strictly prohibited</li>
+                <li><strong>Weapons and dangerous objects</strong> are prohibited at P.E.P. events unless explicitly authorized for security personnel by MMFP or a partner site</li>
+                <li>Any behavior that <strong>endangers the safety or well-being</strong> of youth or adults may result in immediate removal from an event and possible membership suspension</li>
+            </ul>
+        </div>
+
+        <!-- Social Media and Public Representation -->
+        <div class="conduct-card">
+            <div class="conduct-header">
+                <span class="conduct-icon">📱</span>
+                <h3>Social Media and Public Representation</h3>
+            </div>
+            <p class="conduct-intro">Members should represent the program positively on social media and in public. <strong>Harassment, hate speech, or targeted attacks</strong> toward other members, staff, coaches, or partners may be grounds for disciplinary actions.</p>
+        </div>
+
+        <!-- Discipline, Probation and Appeals -->
+        <div class="conduct-card conduct-card-wide">
+            <div class="conduct-header">
+                <span class="conduct-icon">⚖️</span>
+                <h3>Discipline, Probation and Appeals</h3>
+            </div>
+            
+            <div class="discipline-subsection">
+                <h4>Progressive Discipline</h4>
+                <p class="conduct-intro">When possible, the program will use a progressive discipline model, which may include:</p>
+                <ul class="conduct-list">
+                    <li>Verbal or written warning</li>
+                    <li>Required meeting with program staff</li>
+                    <li>Probationary period with written expectations</li>
+                    <li>Temporary suspension from events or benefits</li>
+                    <li>Termination of membership for serious or repeated violations</li>
+                </ul>
+            </div>
+
+            <div class="discipline-subsection">
+                <h4>Immediate Suspension</h4>
+                <p class="conduct-intro">In cases of serious misconduct, violence, or behavior that threatens the safety or well-being of others, the program may <strong>immediately suspend or remove</strong> a member or participant pending review.</p>
+            </div>
+
+            <div class="discipline-subsection">
+                <h4>Appeals</h4>
+                <p class="conduct-intro">Members may submit a <strong>written appeal</strong> of a suspension or termination decision to the program's designated review committee or administrator within a reasonable time frame (for example, 10-15 business days). The decision of the review committee or administrator shall be final within the program.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="membership-bylaws-section">
+    <h2>Membership Bylaws</h2>
+    
+    <div class="bylaws-container">
+        <!-- Program Governance -->
+        <div class="bylaw-card">
+            <div class="bylaw-header">
+                <span class="bylaw-icon">🏛️</span>
+                <h3>Program Governance</h3>
+            </div>
+            <ul class="bylaw-list">
+                <li>The Parent Enrichment Program is administered by <strong>MannMade Fitness Productions LLC (MMFP)</strong></li>
+                <li>MMFP may appoint a <strong>Program Director, Advisory Board, or Committee</strong> to provide oversight, review policies, and support decision-making</li>
+                <li>The Advisory Board (if established) may include <strong>parents, coaches, community leaders, and partner representatives</strong></li>
+            </ul>
+        </div>
+
+        <!-- Membership in Good Standing -->
+        <div class="bylaw-card">
+            <div class="bylaw-header">
+                <span class="bylaw-icon">✅</span>
+                <h3>Membership in Good Standing</h3>
+            </div>
+            <p class="bylaw-intro">A member is considered in good standing when he or she:</p>
+            <ul class="bylaw-list">
+                <li>Has completed <strong>required enrollment steps</strong></li>
+                <li>Is current on any <strong>agreed membership obligations</strong> (if any fees or forms apply)</li>
+                <li>Has met or is actively working toward <strong>attendance and event participation requirements</strong></li>
+                <li>Is actively pursuing completion of <strong>required courses</strong> (P.C.O.R., CPR, etc.)</li>
+                <li>Has no unresolved <strong>serious disciplinary actions or suspensions</strong></li>
+            </ul>
+            <p class="bylaw-note">Only members in good standing may be eligible for certain benefits, leadership roles, and/or advisory opportunities as determined by MMFP.</p>
+        </div>
+
+        <!-- Member Rights -->
+        <div class="bylaw-card">
+            <div class="bylaw-header">
+                <span class="bylaw-icon">📋</span>
+                <h3>Member Rights</h3>
+            </div>
+            <p class="bylaw-intro">Members in good standing may:</p>
+            <ul class="bylaw-list">
+                <li>Participate in <strong>program events, trainings, and incentives</strong>, subject to capacity</li>
+                <li>Provide <strong>feedback and suggestions</strong> to improve the program</li>
+                <li>Be considered for <strong>volunteer, mentor, or advisory opportunities</strong> when available</li>
+                <li>Access their own <strong>records of course completions and program participation</strong></li>
+            </ul>
+        </div>
+
+        <!-- Member Responsibilities -->
+        <div class="bylaw-card">
+            <div class="bylaw-header">
+                <span class="bylaw-icon">⚖️</span>
+                <h3>Member Responsibilities</h3>
+            </div>
+            <p class="bylaw-intro">All members are responsible for:</p>
+            <ul class="bylaw-list">
+                <li>Maintaining <strong>updated contact information</strong></li>
+                <li>Reviewing <strong>communication from the program</strong> in a timely manner</li>
+                <li>Modeling <strong>positive behavior</strong> for youth and other families</li>
+                <li>Respecting the decisions of <strong>coaches, officials, and program staff</strong></li>
+                <li>Complying with all <strong>policies, rules, and bylaws</strong></li>
+            </ul>
+        </div>
+
+        <!-- Amendments -->
+        <div class="bylaw-card">
+            <div class="bylaw-header">
+                <span class="bylaw-icon">📝</span>
+                <h3>Amendments</h3>
+            </div>
+            <p class="bylaw-intro">These policies and bylaws may be updated or amended by MMFP as needed to reflect growth, legal requirements, and community feedback.</p>
+            <p class="bylaw-intro">When material changes are made, MMFP will provide notice to members through reasonable communication channels (email, meetings, or posted updates).</p>
+        </div>
+
+        <!-- Voluntary Withdrawal -->
+        <div class="bylaw-card">
+            <div class="bylaw-header">
+                <span class="bylaw-icon">🚪</span>
+                <h3>Voluntary Withdrawal</h3>
+            </div>
+            <p class="bylaw-intro">A Parent/Guardian Member may voluntarily withdraw from the program at any time by submitting written notice or completing a withdrawal form.</p>
+            <p class="bylaw-note">Withdrawal may affect eligibility for current or future benefits and incentives.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Document Upload Portal -->
+<div class="document-upload-section">
+    <h2>Pre-Qualification Document Upload Portal</h2>
+    <p class="upload-intro">Upload your pre-qualifying documents to complete your membership application. All documents are required for program participation.</p>
+    
+    <div class="required-documents-list">
+        <h3>Required Pre-Qualifying Documents</h3>
+        <div class="documents-grid">
+            <div class="document-item">
+                <div class="document-icon">📋</div>
+                <h4>PCOR Course</h4>
+                <p>Parent/Coach/Official/Relations Course certificate or completion document</p>
+            </div>
+            <div class="document-item">
+                <div class="document-icon">❤️</div>
+                <h4>CPR Certification</h4>
+                <p>Current CPR or CPR/First Aid certification certificate</p>
+            </div>
+            <div class="document-item">
+                <div class="document-icon">📚</div>
+                <h4>Additional Mandatory Classes</h4>
+                <p>Certificates or completion documents for any additional mandatory classes</p>
+            </div>
+            <div class="document-item">
+                <div class="document-icon">🏥</div>
+                <h4>Basic Sports Safety and Injury Awareness</h4>
+                <p>Completion certificate for basic sports safety and injury awareness training</p>
+            </div>
+            <div class="document-item">
+                <div class="document-icon">🧠</div>
+                <h4>Mental Health Awareness and Referral Basics</h4>
+                <p>Certificate or completion document for mental health awareness training</p>
+            </div>
+            <div class="document-item">
+                <div class="document-icon">✅</div>
+                <h4>Program-Specific Compliance Training</h4>
+                <p>Completion certificate for program-specific compliance training</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="upload-form-container">
+        <h3>Upload Your Documents</h3>
+        <form method="POST" action="{% url 'main:upload_document' %}" enctype="multipart/form-data" class="document-upload-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="participant_name">Your Name *</label>
+                <input type="text" id="participant_name" name="participant_name" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="participant_email">Email Address *</label>
+                <input type="email" id="participant_email" name="participant_email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="participant_phone">Phone Number *</label>
+                <input type="tel" id="participant_phone" name="participant_phone" required placeholder="(555) 123-4567">
+            </div>
+
+            <div class="form-group">
+                <label for="participant_children_ages">Children Ages</label>
+                <input type="text" id="participant_children_ages" name="participant_children_ages" placeholder="e.g., 5, 8, 12">
+            </div>
+
+            <div class="form-group">
+                <label for="id_document_type">Document Type *</label>
+                <select name="document_type" id="id_document_type" class="form-control" required>
+                    <option value="">Select document type...</option>
+                    <option value="PCOR">PCOR Course (Parent/Coach/Official/Relations Course)</option>
+                    <option value="CPR">CPR Certification</option>
+                    <option value="ADDITIONAL_MANDATORY">Additional Mandatory Classes</option>
+                    <option value="SPORTS_SAFETY">Basic Sports Safety and Injury Awareness</option>
+                    <option value="MENTAL_HEALTH">Mental Health Awareness and Referral Basics</option>
+                    <option value="COMPLIANCE">Program-Specific Compliance Training</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="id_file">Upload Document *</label>
+                <input type="file" name="file" id="id_file" class="form-control" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" required>
+                <small class="form-help">Accepted formats: PDF, DOC, DOCX, JPG, JPEG, PNG (Max size: 10MB)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="id_notes">Notes (Optional)</label>
+                <textarea name="notes" id="id_notes" class="form-control" rows="3" placeholder="Add any additional notes about this document"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Upload Document</button>
+            </div>
+        </form>
+
+        <div class="upload-note">
+            <p><strong>Note:</strong> You can upload multiple documents. Each document will be reviewed by our team. You will receive a confirmation email once your documents have been verified.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Membership Acknowledgment Form -->
+<div class="acknowledgment-section">
+    <h2>Membership Acknowledgment</h2>
+    <div class="acknowledgment-form-container">
+        <p class="acknowledgment-text">By signing or electronically accepting membership in the Parent Enrichment Program, the Parent/Guardian Member acknowledges that he or she has reviewed, understood, and agrees to comply with Membership Policies, Rules, and Bylaws.</p>
+        
+        <form method="POST" action="{% url 'main:new_participant' %}" class="acknowledgment-form">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="parent_name">Parent/Guardian Name *</label>
+                    <input type="text" id="parent_name" name="parent_name" required placeholder="Enter full name">
+                </div>
+                <div class="form-group">
+                    <label for="signature_date">Date *</label>
+                    <input type="date" id="signature_date" name="signature_date" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="program_representative">Program Representative Name *</label>
+                <input type="text" id="program_representative" name="program_representative" required placeholder="Program representative name">
+            </div>
+            
+            <div class="form-group">
+                <label for="representative_date">Representative Date *</label>
+                <input type="date" id="representative_date" name="representative_date" required>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>
+                    <input type="checkbox" required>
+                    I acknowledge that I have reviewed, understood, and agree to comply with all Membership Policies, Rules, and Bylaws of the Parent Enrichment Program *
+                </label>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-yellow">Submit Acknowledgment</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -96,11 +537,11 @@
         </div>
         <div class="faq-item">
             <h3>What are the membership requirements?</h3>
-            <p>There are no specific requirements. If you're a parent, caregiver, or guardian, you're welcome to join.</p>
+            <p>Board or Administrative invite. </p>
         </div>
         <div class="faq-item">
             <h3>How do I access member benefits?</h3>
-            <p>Once you register, you'll receive a welcome email with information about accessing programs and resources. You can also check our Programs page for upcoming events.</p>
+            <p>Meet program standards and register online. You can also check our Programs page for upcoming events.</p>
         </div>
         <div class="faq-item">
             <h3>Can I cancel my membership?</h3>

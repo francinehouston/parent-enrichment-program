@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Create Account - Parent Enrichment Program{% endblock %}
+
+{% block content %}
+<div class="admin-login-container">
+    <div class="admin-login-card">
+        <div class="admin-login-header">
+            <div class="admin-icon">✨</div>
+            <h1>Create Your Account</h1>
+            <p class="admin-subtitle">Join the Parent Enrichment Program community</p>
+        </div>
+
+        <form method="POST" class="admin-login-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">
+                    <span class="label-icon">👤</span>
+                    Username *
+                </label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="field-errors">
+                        {% for error in form.username.errors %}
+                            <span class="error-text">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if form.username.help_text %}
+                    <small class="help-text">{{ form.username.help_text }}</small>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">
+                    <span class="label-icon">📧</span>
+                    Email Address *
+                </label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="field-errors">
+                        {% for error in form.email.errors %}
+                            <span class="error-text">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.first_name.id_for_label }}">
+                        <span class="label-icon">👨</span>
+                        First Name
+                    </label>
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <div class="field-errors">
+                            {% for error in form.first_name.errors %}
+                                <span class="error-text">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.last_name.id_for_label }}">
+                        <span class="label-icon">👨</span>
+                        Last Name
+                    </label>
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <div class="field-errors">
+                            {% for error in form.last_name.errors %}
+                                <span class="error-text">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">
+                    <span class="label-icon">🔒</span>
+                    Password *
+                </label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="field-errors">
+                        {% for error in form.password1.errors %}
+                            <span class="error-text">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if form.password1.help_text %}
+                    <small class="help-text">{{ form.password1.help_text }}</small>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">
+                    <span class="label-icon">🔒</span>
+                    Confirm Password *
+                </label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="field-errors">
+                        {% for error in form.password2.errors %}
+                            <span class="error-text">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if form.password2.help_text %}
+                    <small class="help-text">{{ form.password2.help_text }}</small>
+                {% endif %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-admin-login">
+                    <span class="btn-icon">✓</span>
+                    <span>Create Account</span>
+                </button>
+            </div>
+        </form>
+
+        <div class="admin-login-footer">
+            <div class="register-link">
+                <p>Already have an account? <a href="{% url 'main:admin_login' %}">Login here</a></p>
+            </div>
+            <div class="security-note">
+                <span class="security-icon">🛡️</span>
+                <span>Your information is secure. We never share your personal data.</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

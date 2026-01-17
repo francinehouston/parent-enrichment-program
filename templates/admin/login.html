@@ -1,30 +1,79 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Admin Login - Parent Enrichment Program{% endblock %}
 
 {% block content %}
-<div class="form-container">
-    <h1>Admin Login</h1>
-    <form method="POST" class="form">
-        <div class="form-group">
-            <label for="username">Username *</label>
-            <input type="text" id="username" name="username" required placeholder="Enter username">
+<div class="admin-login-container">
+    <div class="admin-login-card">
+        <div class="admin-login-header">
+            <div class="admin-icon">🔐</div>
+            <h1>Admin Login</h1>
+            <p class="admin-subtitle">Access the Parent Enrichment Program administration panel</p>
         </div>
 
-        <div class="form-group">
-            <label for="password">Password *</label>
-            <input type="password" id="password" name="password" required placeholder="Enter password">
-        </div>
+        <form method="POST" class="admin-login-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="username">
+                    <span class="label-icon">👤</span>
+                    Username *
+                </label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    required 
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    autofocus
+                >
+            </div>
 
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary btn-large">Login</button>
+            <div class="form-group">
+                <label for="password">
+                    <span class="label-icon">🔒</span>
+                    Password *
+                </label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required 
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-admin-login">
+                    <span class="btn-icon">→</span>
+                    <span>Login to Admin Panel</span>
+                </button>
+            </div>
+        </form>
+
+        <div class="admin-login-footer">
+            <div class="register-link">
+                <p>Don't have an account? <a href="{% url 'main:register' %}">Create one here</a></p>
+            </div>
+            <div class="security-note">
+                <span class="security-icon">🛡️</span>
+                <span>Secure admin access. All login attempts are logged.</span>
+            </div>
+            <div class="admin-help">
+                <p><strong>Need help?</strong> Contact your system administrator.</p>
+                <p class="admin-note">
+                    <small>
+                        <strong>Note:</strong> You must have staff privileges to access the admin panel.
+                        <br>
+                        To grant admin access, a superuser can promote your account through Django Admin.
+                    </small>
+                </p>
+            </div>
         </div>
-    </form>
-    
-    <p class="admin-note">
-        <small><strong>Default credentials:</strong> username: admin, password: admin123<br>
-        <em>Please change the default password in production!</em></small>
-    </p>
+    </div>
 </div>
 {% endblock %}
 

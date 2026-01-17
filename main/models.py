@@ -164,3 +164,27 @@ class Certification(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+
+class MemberDocument(models.Model):
+    DOCUMENT_TYPE_CHOICES = [
+        ('PCOR', 'PCOR Course (Parent/Coach/Official/Relations Course)'),
+        ('CPR', 'CPR Certification'),
+        ('ADDITIONAL_MANDATORY', 'Additional Mandatory Classes'),
+        ('SPORTS_SAFETY', 'Basic Sports Safety and Injury Awareness'),
+        ('MENTAL_HEALTH', 'Mental Health Awareness and Referral Basics'),
+        ('COMPLIANCE', 'Program-Specific Compliance Training'),
+    ]
+
+    participant = models.ForeignKey(Participant, on_delete=models.CASCADE, related_name='documents')
+    document_type = models.CharField(max_length=50, choices=DOCUMENT_TYPE_CHOICES)
+    file = models.FileField(upload_to='member_documents/%Y/%m/%d/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    notes = models.TextField(blank=True, help_text='Optional notes about this document')
+    is_verified = models.BooleanField(default=False, help_text='Admin verification status')
+
+    def __str__(self):
+        return f"{self.participant.name} - {self.get_document_type_display()}"
+
+    class Meta:
+        ordering = ['-uploaded_at']

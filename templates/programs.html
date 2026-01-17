@@ -3,43 +3,201 @@
 {% block title %}Programs - Parent Enrichment Program{% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <h1>All Programs</h1>
-    {% if user.is_authenticated and user.is_staff %}
-    <a href="{% url 'main:new_program' %}" class="btn btn-primary">Create New Program</a>
-    {% endif %}
+<!-- Hero Section with Yellow Accent -->
+<div class="programs-hero">
+    <div class="programs-hero-content">
+        <h1>🌟 Our Programs</h1>
+        <p class="programs-subtitle">Discover enriching opportunities designed to support and empower families in our community</p>
+        {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'main:new_program' %}" class="btn btn-yellow">✨ Create New Program</a>
+        {% endif %}
+    </div>
+    <div class="programs-hero-decoration">
+        <div class="yellow-accent-circle"></div>
+        <div class="yellow-accent-circle"></div>
+        <div class="yellow-accent-circle"></div>
+    </div>
+</div>
+
+<!-- Eligibility and Enrollment Section -->
+<div class="eligibility-section">
+    <h2>Eligibility and Enrollment</h2>
+    
+    <div class="eligibility-content">
+        <div class="eligibility-card">
+            <div class="eligibility-header">
+                <span class="eligibility-icon">✅</span>
+                <h3>Basic Eligibility</h3>
+            </div>
+            <p class="eligibility-intro">To be eligible for membership, a Parent/Guardian Member must:</p>
+            <ul class="eligibility-list">
+                <li>Be at least <strong>18 years of age</strong></li>
+                <li>Be a parent, legal guardian, relative, or primary caregiver of a student athlete, or be actively involved in the care and development of youth in the community</li>
+                <li>Agree to abide by <strong>program policies, rules, and bylaws</strong></li>
+            </ul>
+        </div>
+
+        <div class="eligibility-card">
+            <div class="eligibility-header">
+                <span class="eligibility-icon">📝</span>
+                <h3>Enrollment Process</h3>
+            </div>
+            <p class="eligibility-intro">Enrollment may include:</p>
+            <ul class="eligibility-list">
+                <li>Completing an <strong>online or paper application</strong></li>
+                <li>Attending an <strong>orientation session</strong> (in-person or virtual) when offered</li>
+                <li>Acknowledging receipt of these <strong>policies and bylaws</strong></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Program Framework Section -->
+<div class="program-framework-section">
+    <h2>Program Framework</h2>
+    
+    <div class="framework-container">
+        <!-- Outcomes -->
+        <div class="framework-card">
+            <div class="framework-header">
+                <span class="framework-icon">🎯</span>
+                <h3>Outcomes</h3>
+            </div>
+            <ul class="framework-list">
+                <li>Service parents by way of <strong>community vendor support</strong></li>
+                <li><strong>Completion of Certification programs</strong></li>
+                <li><strong>Personal achievement</strong> Mentorship</li>
+                <li><strong>Parent engagement</strong> with schools and youth programs</li>
+                <li>Improved family <strong>mental and physical health</strong></li>
+            </ul>
+        </div>
+
+        <!-- Components -->
+        <div class="framework-card framework-card-wide">
+            <div class="framework-header">
+                <span class="framework-icon">🧩</span>
+                <h3>Components</h3>
+            </div>
+            <div class="components-grid">
+                <div class="component-item">
+                    <h4>Education</h4>
+                    <ul class="component-sublist">
+                        <li>Orientation & Baseline Survey</li>
+                        <li>Local Businesses supporting members</li>
+                    </ul>
+                </div>
+                <div class="component-item">
+                    <h4>Health & Wellness</h4>
+                    <ul class="component-sublist">
+                        <li>Habits, goals, accessible plans</li>
+                    </ul>
+                </div>
+                <div class="component-item">
+                    <h4>Safety & Care</h4>
+                    <ul class="component-sublist">
+                        <li>CPR/AED/First Aid pathways</li>
+                    </ul>
+                </div>
+                <div class="component-item">
+                    <h4>Mentorship & Character</h4>
+                    <ul class="component-sublist">
+                        <li>Family Engagement workshops</li>
+                        <li>Gala & Event VIP Access</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery -->
+        <div class="framework-card">
+            <div class="framework-header">
+                <span class="framework-icon">🚀</span>
+                <h3>Delivery</h3>
+            </div>
+            <ul class="framework-list">
+                <li><strong>Hybrid</strong> (in-person + virtual)</li>
+                <li>Hosted by <strong>schools/nonprofits/corporations</strong></li>
+                <li><strong>Sponsorships welcome</strong></li>
+            </ul>
+        </div>
+
+        <!-- Measurement -->
+        <div class="framework-card">
+            <div class="framework-header">
+                <span class="framework-icon">📊</span>
+                <h3>Measurement</h3>
+            </div>
+            <p class="framework-intro">Based on program policies:</p>
+            <ul class="framework-list">
+                <li><strong>Pre/post surveys</strong></li>
+                <li><strong>Attendance</strong> tracking</li>
+                <li><strong>Credential completion</strong></li>
+                <li><strong>Qualitative notes</strong> and feedback</li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 {% if programs %}
+<!-- Programs Count Badge -->
+<div class="programs-count-badge">
+    <span class="badge-number">{{ programs|length }}</span>
+    <span class="badge-text">Active Programs</span>
+</div>
+
 <div class="program-list">
     {% for program in programs %}
-    <div class="program-card">
-        <h3>{{ program.title }}</h3>
-        <p>{{ program.description }}</p>
-        <div class="program-details">
-            <span>📅 {{ program.date }}</span>
-            <span>🕐 {{ program.time }}</span>
-            <span>📍 {{ program.location }}</span>
+    <div class="program-card-enhanced">
+        <div class="program-card-header">
+            <div class="program-icon">📚</div>
+            <h3>{{ program.title }}</h3>
+            <span class="program-badge">New</span>
         </div>
-        <small>Created: {{ program.created_at|date:"F d, Y" }}</small>
-        <div class="program-actions">
-            <a href="{% url 'main:program_detail' program.id %}" class="btn btn-outline btn-small">View Details</a>
+        <p class="program-description">{{ program.description }}</p>
+        <div class="program-details-enhanced">
+            <div class="detail-item">
+                <span class="detail-icon">📅</span>
+                <span class="detail-label">Date:</span>
+                <span class="detail-value">{{ program.date }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-icon">🕐</span>
+                <span class="detail-label">Time:</span>
+                <span class="detail-value">{{ program.time }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-icon">📍</span>
+                <span class="detail-label">Location:</span>
+                <span class="detail-value">{{ program.location }}</span>
+            </div>
+        </div>
+        <div class="program-footer">
+            <small class="program-date">Created: {{ program.created_at|date:"F d, Y" }}</small>
+            <a href="{% url 'main:program_detail' program.id %}" class="btn btn-yellow-outline">View Details →</a>
         </div>
     </div>
     {% endfor %}
 </div>
 {% else %}
-<div class="empty-state">
-    <p> Parent Education & Certification
-        Youth Sports & Academic Support
-        Mental Health, Safety & Wellness
-        Community Partnerships & Incentives 
+<div class="empty-state-enhanced">
+    <div class="empty-state-header">
+        <div class="empty-state-icon">🌟</div>
+        <h2>Our Program Categories</h2>
+        <p class="empty-state-subtitle">Explore our comprehensive range of programs designed to support families</p>
+    </div>
+    <ul class="program-categories">
+        <li>Parent Education & Certification</li>
+        <li>Youth Sports & Academic Support</li>
+        <li>Mental Health, Safety & Wellness</li>
+        <li>Community Partnerships & Incentives</li>
+    </ul>
     {% if user.is_authenticated and user.is_staff %}
-    <a href="{% url 'main:new_program' %}">Create the first one!</a>
+    <div class="empty-state-cta">
+        <a href="{% url 'main:new_program' %}" class="btn btn-yellow">Create the first program!</a>
+    </div>
     {% else %}
-    Check back soon for upcoming programs!
+    <p class="empty-state-message">Check back soon for upcoming programs!</p>
     {% endif %}
-    </p>
 </div>
 {% endif %}
 {% endblock %}

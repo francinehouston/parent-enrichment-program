@@ -16,13 +16,17 @@
                 <li><a href="{% url 'main:about' %}">About</a></li>
                 <li><a href="{% url 'main:list_programs' %}">Programs</a></li>
                 <li><a href="{% url 'main:membership' %}">Membership</a></li>
+                <li><a href="{% url 'main:vendor' %}">Vendor</a></li>
                 <li><a href="{% url 'main:donate' %}">Donate</a></li>
-                {% if user.is_authenticated and user.is_staff %}
-                <li><a href="{% url 'main:admin_dashboard' %}">Admin</a></li>
-                <li><a href="{% url 'admin:index' %}">Django Admin</a></li>
-                <li><a href="{% url 'admin:logout' %}">Logout</a></li>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                    <li><a href="{% url 'main:admin_dashboard' %}">Admin</a></li>
+                    <li><a href="{% url 'admin:index' %}">Django Admin</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'admin:logout' %}">Logout ({{ user.username }})</a></li>
                 {% else %}
-                <li><a href="{% url 'admin:login' %}">Admin Login</a></li>
+                <li><a href="{% url 'main:register' %}">Register</a></li>
+                <li><a href="{% url 'main:admin_login' %}">Login</a></li>
                 {% endif %}
             </ul>
         </div>
