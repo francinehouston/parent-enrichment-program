@@ -72,6 +72,162 @@
         </div>
         <p class="contact-note">For vendor partnership inquiries, please contact us through our main channels or reach out to learn more about how your business can make a difference in our community.</p>
     </div>
+
+    <!-- Vendor Submission Form -->
+    <div class="vendor-submission-section">
+        <h2>Submit Your Service Offering</h2>
+        <p class="submission-intro">Fill out the form below to submit your service or sales offering to P.E.P. members. We'll review your submission and get back to you soon.</p>
+        
+        <div class="vendor-form-container">
+            <form method="POST" action="{% url 'main:vendor' %}" enctype="multipart/form-data" class="vendor-submission-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="id_service_name">Name of Service or Sales Offering *</label>
+                    {{ vendor_form.service_name }}
+                    {% if vendor_form.service_name.errors %}
+                        <div class="form-errors">{{ vendor_form.service_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_business_name">Business Name</label>
+                    {{ vendor_form.business_name }}
+                    {% if vendor_form.business_name.errors %}
+                        <div class="form-errors">{{ vendor_form.business_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_contact_name">Your Name *</label>
+                        {{ vendor_form.contact_name }}
+                        {% if vendor_form.contact_name.errors %}
+                            <div class="form-errors">{{ vendor_form.contact_name.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_email">Email Address *</label>
+                        {{ vendor_form.email }}
+                        {% if vendor_form.email.errors %}
+                            <div class="form-errors">{{ vendor_form.email.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_phone">Phone Number</label>
+                    {{ vendor_form.phone }}
+                    {% if vendor_form.phone.errors %}
+                        <div class="form-errors">{{ vendor_form.phone.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_price_list">Upload Price List *</label>
+                    {{ vendor_form.price_list }}
+                    <small class="form-help">Accepted formats: PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG (Max size: 10MB)</small>
+                    {% if vendor_form.price_list.errors %}
+                        <div class="form-errors">{{ vendor_form.price_list.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Pricing and Discount Section -->
+                <div class="form-section-header">
+                    <h3>Pricing and Discount Information</h3>
+                    <p class="section-description">Provide details about your service pricing and any discounts for P.E.P. members.</p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_discount_percentage">Discount Percentage for P.E.P. Members</label>
+                        <div class="input-with-symbol">
+                            {{ vendor_form.discount_percentage }}
+                            <span class="input-symbol">%</span>
+                        </div>
+                        <small class="form-help">Enter the discount percentage (e.g., 10.00 for 10%)</small>
+                        {% if vendor_form.discount_percentage.errors %}
+                            <div class="form-errors">{{ vendor_form.discount_percentage.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_service_price">Service Price</label>
+                        <div class="input-with-symbol">
+                            <span class="input-symbol">$</span>
+                            {{ vendor_form.service_price }}
+                        </div>
+                        <small class="form-help">Enter the price of your service</small>
+                        {% if vendor_form.service_price.errors %}
+                            <div class="form-errors">{{ vendor_form.service_price.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_overall_value">Overall Value</label>
+                        <div class="input-with-symbol">
+                            <span class="input-symbol">$</span>
+                            {{ vendor_form.overall_value }}
+                        </div>
+                        <small class="form-help">Enter the overall value of the service</small>
+                        {% if vendor_form.overall_value.errors %}
+                            <div class="form-errors">{{ vendor_form.overall_value.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_frequency">Frequency of Service Offered</label>
+                        {{ vendor_form.frequency }}
+                        <small class="form-help">How often is this service offered?</small>
+                        {% if vendor_form.frequency.errors %}
+                            <div class="form-errors">{{ vendor_form.frequency.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Free Service Section -->
+                <div class="form-section-header">
+                    <h3>Free Service Information (Optional)</h3>
+                    <p class="section-description">If you offer any free services to P.E.P. members, please provide details below.</p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_free_service_name">Name of Free Service</label>
+                        {{ vendor_form.free_service_name }}
+                        <small class="form-help">Enter the name of the free service you offer</small>
+                        {% if vendor_form.free_service_name.errors %}
+                            <div class="form-errors">{{ vendor_form.free_service_name.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_free_service_frequency">How Often is it Free</label>
+                        {{ vendor_form.free_service_frequency }}
+                        <small class="form-help">e.g., "Once per month", "One-time", "Annually"</small>
+                        {% if vendor_form.free_service_frequency.errors %}
+                            <div class="form-errors">{{ vendor_form.free_service_frequency.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_description">Service Description (Optional)</label>
+                    {{ vendor_form.description }}
+                    {% if vendor_form.description.errors %}
+                        <div class="form-errors">{{ vendor_form.description.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">Submit Service Offering</button>
+                </div>
+            </form>
+
+            <div class="submission-note">
+                <p><strong>Note:</strong> After submitting, our team will review your service offering and price list. We'll contact you via email to discuss partnership opportunities and next steps.</p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

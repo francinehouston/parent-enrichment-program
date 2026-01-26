@@ -54,6 +54,58 @@
     </div>
 </div>
 
+<div class="admin-funds-section">
+    <h2>Fund Management</h2>
+    <div class="funds-stats-grid">
+        <div class="fund-stat-card">
+            <h3>Total Donations</h3>
+            <div class="fund-amount">${{ stats.total_donations|floatformat:2 }}</div>
+            <a href="{% url 'admin:main_donation_changelist' %}" class="btn btn-outline">View Donations</a>
+        </div>
+        <div class="fund-stat-card">
+            <h3>Total Distributed</h3>
+            <div class="fund-amount">${{ stats.total_distributed|floatformat:2 }}</div>
+            <a href="{% url 'main:fund_distribution_list' %}" class="btn btn-outline">View Distributions</a>
+        </div>
+        <div class="fund-stat-card highlight">
+            <h3>Available Funds</h3>
+            <div class="fund-amount">${{ stats.available_funds|floatformat:2 }}</div>
+            <a href="{% url 'main:fund_distribution_new' %}" class="btn btn-primary">Create Distribution</a>
+        </div>
+        <div class="fund-stat-card">
+            <h3>Pending Distributions</h3>
+            <div class="fund-amount">{{ stats.pending_distributions }}</div>
+            <a href="{% url 'main:fund_distribution_list' %}?status=PENDING" class="btn btn-outline">Review Pending</a>
+        </div>
+    </div>
+</div>
+
+<div class="admin-vendors-section">
+    <h2>Vendor Services</h2>
+    <div class="vendor-stats">
+        <div class="vendor-stat-card">
+            <h3>Approved Vendors</h3>
+            <div class="vendor-count">{{ stats.approved_vendors }}</div>
+            <a href="{% url 'admin:main_vendorsubmission_changelist' %}" class="btn btn-outline">Manage Vendors</a>
+        </div>
+    </div>
+</div>
+
+<div class="admin-data-vault-section">
+    <h2>Data Vault</h2>
+    <div class="vault-stats-grid">
+        <div class="vault-stat-card highlight">
+            <h3>🔒 Data Vault</h3>
+            <div class="vault-count">{{ stats.vault_items }} Items</div>
+            <div class="vault-actions">
+                <a href="{% url 'main:data_vault_list' %}" class="btn btn-primary">View All Items</a>
+                <a href="{% url 'main:data_vault_upload' %}" class="btn btn-secondary">Upload Certificate</a>
+            </div>
+            <p class="vault-description">Secure storage for certificates, documents, and important files</p>
+        </div>
+    </div>
+</div>
+
 <div class="admin-quick-actions">
     <h2>Quick Actions</h2>
     <div class="action-buttons">

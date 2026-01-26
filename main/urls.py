@@ -18,5 +18,12 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('admin/login/', views.admin_login, name='admin_login'),
     path('admin/dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('admin/fund-distributions/', views.fund_distribution_list, name='fund_distribution_list'),
+    path('admin/fund-distributions/new/', views.fund_distribution_new, name='fund_distribution_new'),
+    path('admin/fund-distributions/<int:distribution_id>/approve/', views.fund_distribution_approve, name='fund_distribution_approve'),
+    path('admin/fund-distributions/<int:distribution_id>/distribute/', views.fund_distribution_distribute, name='fund_distribution_distribute'),
+    path('admin/data-vault/', views.data_vault_list, name='data_vault_list'),
+    path('admin/data-vault/upload/', views.data_vault_upload, name='data_vault_upload'),
+    path('admin/data-vault/<int:item_id>/', views.data_vault_view, name='data_vault_view'),
 ]
 

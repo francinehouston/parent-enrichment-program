@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Fund Distributions - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Fund Distributions</h1>
+    <div class="header-actions">
+        <a href="{% url 'main:fund_distribution_new' %}" class="btn btn-primary">Create New Distribution</a>
+        <a href="{% url 'main:admin_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+
+<div class="admin-content">
+    <div class="distributions-table-container">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Vendor Service</th>
+                    <th>Donor</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Distributed</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for distribution in distributions %}
+                <tr>
+                    <td>{{ distribution.id }}</td>
+                    <td>
+                        <strong>{{ distribution.vendor.service_name }}</strong><br>
+                        <small>{{ distribution.vendor.contact_name }}</small>
+                    </td>
+                    <td>
+                        {{ distribution.donation.donor_name }}<br>
+                        <small>${{ distribution.donation.amount|floatformat:2 }}</small>
+                    </td>
+                    <td><strong>${{ distribution.amount|floatformat:2 }}</strong></td>
+                    <td>
+                        <span class="status-badge status-{{ distribution.status|lower }}">
+                            {{ distribution.get_status_display }}
+                        </span>
+                    </td>
+                    <td>{{ distribution.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        {% if distribution.distributed_at %}
+                            {{ distribution.distributed_at|date:"M d, Y" }}
+                        {% else %}
+                            <span class="text-muted">Not distributed</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            {% if distribution.status == 'PENDING' %}
+                                <form method="POST" action="{% url 'main:fund_distribution_approve' distribution.id %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                </form>
+                            {% elif distribution.status == 'APPROVED' %}
+                                <form method="POST" action="{% url 'main:fund_distribution_distribute' distribution.id %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-primary">Mark as Distributed</button>
+                                </form>
+                            {% endif %}
+                            <a href="{% url 'admin:main_funddistribution_change' distribution.id %}" class="btn btn-sm btn-outline">View Details</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" class="text-center">No fund distributions found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="distribution-summary">
+        <h3>Summary</h3>
+        <div class="summary-grid">
+            <div class="summary-item">
+                <strong>Total Distributions:</strong> {{ distributions|length }}
+            </div>
+            <div class="summary-item">
+                <strong>Pending:</strong> 
+                {% for dist in distributions %}
+                    {% if dist.status == 'PENDING' %}{{ forloop.counter0|add:1 }}{% endif %}
+                {% endfor %}
+            </div>
+            <div class="summary-item">
+                <strong>Approved:</strong>
+                {% for dist in distributions %}
+                    {% if dist.status == 'APPROVED' %}{{ forloop.counter0|add:1 }}{% endif %}
+                {% endfor %}
+            </div>
+            <div class="summary-item">
+                <strong>Distributed:</strong>
+                {% for dist in distributions %}
+                    {% if dist.status == 'DISTRIBUTED' %}{{ forloop.counter0|add:1 }}{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

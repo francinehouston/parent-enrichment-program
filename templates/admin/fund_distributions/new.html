@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Create Fund Distribution - Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Create Fund Distribution</h1>
+    <a href="{% url 'main:fund_distribution_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+
+<div class="admin-content">
+    <div class="form-container">
+        <form method="POST" class="form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="donation">Select Donation *</label>
+                <select name="donation" id="donation" class="form-control" required>
+                    <option value="">Choose a donation...</option>
+                    {% for donation in donations %}
+                        <option value="{{ donation.id }}" data-amount="{{ donation.amount }}">
+                            {{ donation.donor_name }} - ${{ donation.amount|floatformat:2 }} ({{ donation.donated_at|date:"M d, Y" }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <small class="form-help">Select the donation source for this distribution</small>
+            </div>
+
+            <div class="form-group">
+                <label for="vendor">Select Vendor Service *</label>
+                <select name="vendor" id="vendor" class="form-control" required>
+                    <option value="">Choose a vendor service...</option>
+                    {% for vendor in vendors %}
+                        <option value="{{ vendor.id }}">
+                            {{ vendor.service_name }} - {{ vendor.contact_name }} ({{ vendor.business_name|default:"No business name" }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <small class="form-help">Select the vendor service receiving the funds</small>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Distribution Amount ($) *</label>
+                <input type="number" name="amount" id="amount" class="form-control" step="0.01" min="0.01" required placeholder="0.00">
+                <small class="form-help">Enter the amount to distribute to the vendor</small>
+            </div>
+
+            <div class="form-group">
+                <label for="purpose">Purpose/Description *</label>
+                <textarea name="purpose" id="purpose" class="form-control" rows="4" required placeholder="Describe the purpose of this fund distribution..."></textarea>
+                <small class="form-help">Explain why these funds are being distributed to this vendor</small>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notes (Optional)</label>
+                <textarea name="notes" id="notes" class="form-control" rows="3" placeholder="Additional notes about this distribution..."></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-large">Create Distribution</button>
+                <a href="{% url 'main:fund_distribution_list' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="info-box">
+        <h3>Important Notes</h3>
+        <ul>
+            <li>Only completed donations can be used as sources for distributions</li>
+            <li>Only approved vendor services can receive fund distributions</li>
+            <li>The distribution amount cannot exceed the available funds from the selected donation</li>
+            <li>New distributions are created with "Pending" status and require approval</li>
+            <li>After approval, distributions must be marked as "Distributed" when funds are actually sent</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
