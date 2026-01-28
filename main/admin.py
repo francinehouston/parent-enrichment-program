@@ -23,18 +23,48 @@ class ParticipantAdmin(admin.ModelAdmin):
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'created_by', 'created_at']
+    list_display = ['title', 'category', 'has_google_notes', 'created_by', 'created_at']
     list_filter = ['category', 'created_at']
     search_fields = ['title', 'content']
     date_hierarchy = 'created_at'
+    fieldsets = (
+        ('Document Information', {
+            'fields': ('title', 'category', 'content', 'google_notes_url')
+        }),
+        ('Metadata', {
+            'fields': ('created_by', 'created_at'),
+            'classes': ('collapse',)
+        }),
+    )
+    readonly_fields = ['created_at']
+    
+    def has_google_notes(self, obj):
+        return bool(obj.google_notes_url)
+    has_google_notes.boolean = True
+    has_google_notes.short_description = 'Has Google Notes'
 
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['title', 'level', 'duration', 'created_by', 'created_at']
+    list_display = ['title', 'level', 'duration', 'has_google_notes', 'created_by', 'created_at']
     list_filter = ['level', 'created_at']
     search_fields = ['title', 'description', 'content']
     date_hierarchy = 'created_at'
+    fieldsets = (
+        ('Course Information', {
+            'fields': ('title', 'description', 'level', 'duration', 'content', 'google_notes_url')
+        }),
+        ('Metadata', {
+            'fields': ('created_by', 'created_at'),
+            'classes': ('collapse',)
+        }),
+    )
+    readonly_fields = ['created_at']
+    
+    def has_google_notes(self, obj):
+        return bool(obj.google_notes_url)
+    has_google_notes.boolean = True
+    has_google_notes.short_description = 'Has Google Notes'
 
 
 class QuizQuestionInline(admin.TabularInline):
@@ -77,10 +107,31 @@ class VideoAdmin(admin.ModelAdmin):
 
 @admin.register(Certification)
 class CertificationAdmin(admin.ModelAdmin):
-    list_display = ['title', 'validity_period', 'associated_course', 'created_by', 'created_at']
+    list_display = ['title', 'validity_period', 'associated_course', 'alison_course_link', 'created_by', 'created_at']
     list_filter = ['created_at']
     search_fields = ['title', 'description', 'requirements']
     date_hierarchy = 'created_at'
+
+    fieldsets = (
+        ('Certification Information', {
+            'fields': ('title', 'description', 'requirements', 'validity_period', 'associated_course')
+        }),
+        ('Alison Integration', {
+            'fields': ('alison_course_url', 'alison_course_id'),
+            'description': 'Optional: Link this certification to an Alison online course.'
+        }),
+        ('Metadata', {
+            'fields': ('created_by', 'created_at'),
+            'classes': ('collapse',)
+        }),
+    )
+    readonly_fields = ['created_at']
+
+    def alison_course_link(self, obj):
+        if obj.alison_course_url:
+            return obj.alison_course_url
+        return ''
+    alison_course_link.short_description = 'Alison URL'
 
 
 @admin.register(MemberDocument)

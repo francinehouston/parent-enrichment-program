@@ -35,6 +35,7 @@ class Document(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     category = models.CharField(max_length=100, default='General')
+    google_notes_url = models.URLField(blank=True, help_text='Link to Google Notes/Docs for this document')
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
@@ -57,6 +58,7 @@ class Course(models.Model):
     content = models.TextField()
     duration = models.CharField(max_length=50, blank=True)
     level = models.CharField(max_length=20, choices=LEVEL_CHOICES, default='Beginner')
+    google_notes_url = models.URLField(blank=True, help_text='Link to Google Notes/Docs for this course')
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
@@ -156,6 +158,9 @@ class Certification(models.Model):
     requirements = models.TextField()
     validity_period = models.CharField(max_length=100, blank=True)
     associated_course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
+    # Alison integration fields
+    alison_course_url = models.URLField(blank=True, help_text='Link to related Alison course')
+    alison_course_id = models.CharField(max_length=100, blank=True, help_text='Alison course ID or reference')
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
